@@ -6,7 +6,6 @@
 package cr.ac.una.reg.info.bl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Date;
 
 /**
  *
@@ -80,7 +79,7 @@ public class LineaPrestamoBean {
     /*********************************************************/
         public String consultarPrestamo()throws Exception{
         try{
-        Servicio.prestamoConsultar(this);
+     //   Servicio.prestamoConsultar(this);
         return "encontrado";
         }
         catch(Exception ex){

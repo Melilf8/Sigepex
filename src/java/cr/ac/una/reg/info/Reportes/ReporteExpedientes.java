@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package cr.ac.una.reg.info.Reportes;
 
 import cr.ac.una.reg.info.bl.ReporteExpedienteBean;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author vindasloiza
  */
 public class ReporteExpedientes extends HttpServlet {
-
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -29,8 +30,8 @@ public class ReporteExpedientes extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("application/pdf");
+    throws ServletException, IOException {
+        			 response.setContentType("application/pdf");
         try {
             //this.verificarUsuario();
             //captura error de lectura de archivo
@@ -58,7 +59,7 @@ public class ReporteExpedientes extends HttpServlet {
             String a = "";
         }
 
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -70,9 +71,9 @@ public class ReporteExpedientes extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -83,7 +84,7 @@ public class ReporteExpedientes extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -95,4 +96,5 @@ public class ReporteExpedientes extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

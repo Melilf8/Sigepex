@@ -20,7 +20,7 @@ public class Connection {
 
    /** Constructor de DbConnection */
    public boolean openConecction(){
- 
+
       try{
          //obtenemos el driver de para mysql
          Class.forName("com.mysql.jdbc.Driver");
@@ -45,7 +45,7 @@ public class Connection {
       conn = null;
    }
 
-  
+
 
 
 

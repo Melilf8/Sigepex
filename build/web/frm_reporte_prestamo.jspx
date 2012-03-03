@@ -38,7 +38,6 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_ReportePrestamo}"/>
-                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Reportes / Préstamo Expedientes</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -69,7 +68,7 @@
         </ice:form>
 
         <table align="center" cellpadding="0" cellspacing="0" width="855">
-    
+
             <tr><td colspan="4"></td></tr>
             <tr><td colspan="4"></td></tr>
             <tr><td colspan="4"></td></tr>
@@ -83,51 +82,25 @@
                 <h3>Reporte Préstamo de Expedientes</h3>
                 <div class="demo">
                     <label for="from">Fecha Inicio</label>
-                    <h:inputText styleClass="inputFrom"   id="from"  value="#{reporte.fechaInicio}"/>
+                    <input type="text" class="inputFrom"  id="from"  value=""></input>
                     <label for="to">Fecha Final</label>
-                    <h:inputText styleClass="inputTo" id="to"  value="#{reporte.fechaFinal}"/>
+                    <input type="text" class="inputTo"  id="to"  value=""></input>
                     <ice:outputLabel value="Dependencia:" id="lbl_UndAc"/>
-                    <ice:selectOneMenu id="dp_dependencia" value="#{reporte.dependencia}">
+                    <ice:selectOneMenu styleClass="inputCombo" id="dp_dependencia" value="#{reporte.dependencia}">
                         <f:selectItem itemLabel="" itemValue="" />
-                        <f:selectItem itemLabel="Atencion Estudiante" itemValue="Atencion" />
-                        <f:selectItem itemLabel="Matricula y Empadronamiento" itemValue="Soporte" />
-                        <f:selectItem itemLabel="Direccion" itemValue="Expedientes" />
+                        <f:selectItem itemLabel="Atencion a Estudiantes" itemValue="Atencion" />
+                        <f:selectItem itemLabel="Administracion de Expedientes" itemValue="adm" />
+                        <f:selectItem itemLabel="Expedientes Estudiantilies" itemValue="Expedientes" />
+                        <f:selectItem itemLabel="Soporte Documental" itemValue="Soporte" />
                     </ice:selectOneMenu>
                     <label for="txtUsuario">Funcionario</label>
                     <h:inputText  id="txtUsuario" styleClass="inputFunc" value="#{reporte.funcionario}"/>
                     <p>
-                        <h:commandButton value="Aceptar" action="#{reporte.BuscarReporteExpediente}"/>
+                        <input type="button" value="Crear Reporte" onclick="CrearReporte()"></input>
                     </p>
+
                 </div><!-- End demo -->
-                <h:dataTable id="dt1" styleClass="tablesorter" value="#{reporte.tabledata}" var="item" >
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Numero de boleta" />
-                        </f:facet>
-                        <h:outputText value="#{item.id}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Dependencia" />
-                        </f:facet>
-                        <h:outputText value="#{item.fechaInicio}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Fecha Prestamo" />
-                        </f:facet>
-                        <h:outputText value="#{item.dependencia}"></h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Usuario" />
-                        </f:facet>
-                        <h:outputText value="#{item.funcionario}"></h:outputText>
-                    </h:column>
-                    <f:facet name="footer">
-                        <h:outputText value="" />
-                    </f:facet>
-                </h:dataTable>
+
             </div>
             </ice:form>
    </body>

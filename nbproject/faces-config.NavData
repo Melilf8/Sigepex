@@ -2,8 +2,8 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="frm_login.jspx" x="634" y="252" zoom="true"/>
         <Node id="frm_listar_estudiantes.jspx" x="187" y="520" zoom="true"/>
+        <Node id="frm_login.jspx" x="634" y="252" zoom="true"/>
         <Node id="frm_consultar_remision.jspx" x="660" y="116" zoom="true"/>
         <Node id="frm_admin_serie_documental.jspx" x="24" y="91" zoom="true"/>
         <Node id="paginas/notaGastos.jspx" x="36" y="295" zoom="true"/>
@@ -12,12 +12,13 @@
         <Node id="frm_admin_roles.jspx" x="408" y="70" zoom="true"/>
         <Node id="frm_aprobar_prestamo.jspx" x="21" y="-30" zoom="true"/>
         <Node id="frm_mantenimiento_usuarios.jspx" x="313" y="-31" zoom="true"/>
-        <Node id="frm_master_page.jspx" x="932" y="192" zoom="true"/>
         <Node id="frm_admin_ius_por_rol.jspx" x="17" y="458" zoom="true"/>
+        <Node id="frm_master_page.jspx" x="932" y="192" zoom="true"/>
         <Node id="frm_consultar_prestamo.jspx" x="-2" y="338" zoom="true"/>
-        <Node id="frm_listar_funcionarios.jspx" x="911" y="-30" zoom="true"/>
         <Node id="frm_reporte_prestamo.jspx" x="4" y="386" zoom="true"/>
+        <Node id="frm_listar_funcionarios.jspx" x="911" y="-30" zoom="true"/>
         <Node id="frm_listar_estudiantes2.jspx" x="604" y="-86" zoom="true"/>
+        <Node id="frm_agrega_prestamo.jspx" x="150" y="150" zoom="true"/>
         <Node id="frm_inicio.jspx" x="875" y="358" zoom="true"/>
         <Node id="frm_parametros.jspx" x="58" y="26" zoom="true"/>
         <Node id="frm_solicitar_prestamo.jspx" x="601" y="45" zoom="true"/>

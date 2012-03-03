@@ -503,9 +503,23 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${libs.jstl.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.jstl.classpath" todir="${dist.ear.dir}"/>
         <copyfiles files="${libs.icefaces-runtime-182.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.icefaces-runtime-182.classpath" todir="${dist.ear.dir}"/>
         <copyfiles files="${libs.MySQLDriver.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.MySQLDriver.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${libs.icefaces-jsf12-bm.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.icefaces-jsf12-bm.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${libs.jsf12-support-runtime-modified.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.jsf12-support-runtime-modified.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${libs.icefaces-jsf11-runtime-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.icefaces-jsf11-runtime-support.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${libs.JasperReport.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.JasperReport.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${libs.jstl11.classpath}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.libs.jstl11.classpath" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-beanutils-1.8.0.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-beanutils-1.8.0.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-collections-3.2.1.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-collections-3.2.1.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-digester-1.7.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-digester-1.7.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-javaflow-20060411.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-javaflow-20060411.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.commons-logging-1.1.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.commons-logging-1.1.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.iText-2.1.0.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.iText-2.1.0.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.jasperreports-3.6.0.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.jasperreports-3.6.0.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.jdt-compiler-3.1.1.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.jdt-compiler-3.1.1.jar-1" todir="${dist.ear.dir}"/>
+        <copyfiles files="${file.reference.poi-3.2-FINAL-20081019.jar-1}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.poi-3.2-FINAL-20081019.jar-1" todir="${dist.ear.dir}"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.libs.jsf-1-2_12.classpath} ${manifest.libs.icefaces-jsf12-runtime-support.classpath} ${manifest.libs.jstl.classpath} ${manifest.libs.icefaces-runtime-182.classpath} ${manifest.libs.MySQLDriver.classpath} "/>
+            <attribute name="Class-Path" value="${manifest.libs.jsf-1-2_12.classpath} ${manifest.libs.icefaces-jsf12-runtime-support.classpath} ${manifest.libs.jstl.classpath} ${manifest.libs.icefaces-runtime-182.classpath} ${manifest.libs.MySQLDriver.classpath} ${manifest.libs.icefaces-jsf12-bm.classpath} ${manifest.libs.jsf12-support-runtime-modified.classpath} ${manifest.libs.icefaces-jsf11-runtime-support.classpath} ${manifest.libs.JasperReport.classpath} ${manifest.libs.jstl11.classpath} ${manifest.file.reference.commons-beanutils-1.8.0.jar-1} ${manifest.file.reference.commons-collections-3.2.1.jar-1} ${manifest.file.reference.commons-digester-1.7.jar-1} ${manifest.file.reference.commons-javaflow-20060411.jar-1} ${manifest.file.reference.commons-logging-1.1.jar-1} ${manifest.file.reference.iText-2.1.0.jar-1} ${manifest.file.reference.jasperreports-3.6.0.jar-1} ${manifest.file.reference.jdt-compiler-3.1.1.jar-1} ${manifest.file.reference.poi-3.2-FINAL-20081019.jar-1} "/>
         </manifest>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
@@ -514,6 +528,20 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${libs.jstl.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.icefaces-runtime-182.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.MySQLDriver.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.icefaces-jsf12-bm.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.jsf12-support-runtime-modified.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.icefaces-jsf11-runtime-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.JasperReport.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.jstl11.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-beanutils-1.8.0.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-collections-3.2.1.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-digester-1.7.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-javaflow-20060411.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-logging-1.1.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.iText-2.1.0.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.jasperreports-3.6.0.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.jdt-compiler-3.1.1.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.poi-3.2-FINAL-20081019.jar-1}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
         <dirname file="${dist.ear.war}" property="dist.jar.dir"/>

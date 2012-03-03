@@ -21,7 +21,7 @@ import java.util.Calendar;
  * @author Melvin
  */
 public class BoletaPrestamoBean {
-    
+
     private int iDBoleta;
     private FuncionarioBean funcionario;
     private LineaPrestamoBean linea;
@@ -49,7 +49,7 @@ public class BoletaPrestamoBean {
             this.obtieneNumBoleta();
             this.consultarEstadoPrestamo();
             this.agregarEstudiante();
-            
+
         }
         catch(Exception ex){
              Logger.getLogger(EstudianteBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,8 +154,8 @@ public class BoletaPrestamoBean {
     /***************************************************************/
     public String agregarEstudiante() throws Exception{
          EstudianteBean tmp = new EstudianteBean();
-         tmp.setApellidoD(this.estudiante.getApellidoD());
-         tmp.setApellidoU(this.estudiante.getApellidoU());
+       //  tmp.setApellidoD(this.estudiante.getApellidoD());
+       //  tmp.setApellidoU(this.estudiante.getApellidoU());
          tmp.setIdentificacion(this.estudiante.getIdentificacion());
          tmp.setNombre(this.estudiante.getNombre());
          tmp.setSede(this.estudiante.getSede());
@@ -182,27 +182,27 @@ public class BoletaPrestamoBean {
     public String consultarEstadoPrestamo()throws Exception{
         try{
              this.linea.setIDEstudiante(this.estudiante.getIdentificacion());
-             Servicio.prestamoConsultar(linea);
+           //  Servicio.prestamoConsultar(linea);
              if(this.linea.getEstado().equals("Prestado"))
              {
                 this.setVisible(true);
                 this.estudiante.setIdentificacion(this.linea.getIDEstudiante());
-                 Servicio.estudianteConsultar(estudiante);
+           //      Servicio.estudianteConsultar(estudiante);
             }
             else{
-                Servicio.estudianteConsultar(estudiante);
+          //      Servicio.estudianteConsultar(estudiante);
             }
             return "Prestado";
         }
         catch(Exception ex){
-           
+
             return "Disponible";
         }
     }
     public String enviarSolicitudPrestamo() throws Exception{
         try{
-            Servicio.boletaGuardar(this);
-            Servicio.lineasEnviar(this);
+          //  Servicio.boletaGuardar(this);
+          //  Servicio.lineasEnviar(this);
             return "Solicitud Enviada";
         }
         catch(Exception ex){
@@ -212,7 +212,7 @@ public class BoletaPrestamoBean {
 
     public String obtieneNumBoleta()throws Exception{
         try{
-        Servicio.boletaNumero(this);
+     //   Servicio.boletaNumero(this);
         this.iDBoleta=this.iDBoleta + 1;
             return "Número asignado";
         }

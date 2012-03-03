@@ -27,11 +27,11 @@ public class ReporteImplDao extends Connection  {
         try {
             if( openConecction()) {
 
-              
-            } 
-            
+
+            }
+
            }catch(Exception ex){   }
-            
+
 
           finally{
             this.closeConnection();
