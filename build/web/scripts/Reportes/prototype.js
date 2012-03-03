@@ -1,18 +1,27 @@
 jQuery(document).ready(function()
     {
-        var dates = jQuery( "#from, #to" ).datepicker({
+        //jQuery("#myTable").tablesorter();
+		jQuery("#btnBuscar").click(function() {
+			Buscar();
+		});
+
+
+    }
+);
+
+	jQuery(function() {
+		var dates = jQuery( "#from, #to" ).datepicker({
 			defaultDate: "+1w",
 			changeMonth: true,
 			changeYear:true,
 			gotoCurrent:true,
 			autoSize: true,
 			currentText: "Hoy",
-            dateFormat: 'yy-mm-dd',
 			monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
 			dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
 		    numberOfMonths: 1,
 			onSelect: function( selectedDate ) {
-				var option = this.id == "to" ? "maxDate" : "minDate",
+				var option = this.id == "from" ? "minDate" : "maxDate",
 					instance = jQuery( this ).data( "datepicker" ),
 					date = jQuery.datepicker.parseDate(
 						instance.settings.dateFormat ||
@@ -21,11 +30,7 @@ jQuery(document).ready(function()
 				dates.not( this ).datepicker( "option", option, date );
 			}
 		});
-
-
-    }
-);
-
+	});
 
 
 function Buscar()
@@ -102,15 +107,6 @@ function Usuario(i)
     }else{
         return "Usuario"+i;
     }
-}
-function CrearReporte()
-{
-    var fechaini = jQuery('.inputFrom').val();
-    var fechafin = jQuery('.inputTo').val();
-    var funcionario = jQuery('.inputFunc').val();
-    var dependencia =  jQuery('.inputCombo').val();
-    var href = "/Sigepex/ReporteExpedientes?fi=" + fechaini + "&ff=" + fechafin + "&de="+ dependencia +"&fu=" + funcionario;
-    window.open(href,'_newtab');
 }
 
 

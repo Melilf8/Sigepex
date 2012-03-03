@@ -27,6 +27,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_Parametros}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Administración / Parámetros SIGEPEX</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -67,20 +68,20 @@
                  <tr><td colspan="8"></td></tr> <tr><td colspan="8"></td></tr> <tr><td colspan="8"></td></tr>
                 <tr>
                     <td width="230"></td>
-                    <td width="100" align="left" style="font-weight:bold;">
-                        <ice:outputLabel id="lbl_idParametro" value="ID_PARAM" styleClass="cursivaPeq"/>
+                    <td width="130" align="left" style="font-weight:bold;">
+                        <ice:outputLabel id="lbl_idParametro" value="ID_PARAMETRO" styleClass="cursivaPeq"/>
                     </td>
-                    <td width="100" align="left" style="font-weight:bold;">
-                        <ice:outputLabel id="lbl_valor" value="VALOR" styleClass="cursivaPeq"/>
+                    <td width="140" align="left" style="font-weight:bold;">
+                        <ice:outputLabel id="lbl_valor" value="VALOR PARAMETRO" styleClass="cursivaPeq"/>
                     </td>
                     <td width="310"></td>
                 </tr>
                 <tr>
                     <td  width="230"></td>
-                     <td width="100" align="left">
+                     <td width="130" align="left">
                          <ice:inputText id="txt_in_idParametro"  styleClass="textBoxPeq" value="#{parametroBean.idParametro}" maxlength="10" tabindex="1"/>
                      </td>
-                     <td width="100" align="left">
+                     <td width="140" align="left">
                          <ice:inputText id="txt_in_valor"  styleClass="textBoxPeq" value="#{parametroBean.valor}" maxlength="10" tabindex="2"/>
                      </td>
                      <td width="310" align="left">
@@ -108,15 +109,15 @@
                           columnClasses="columna_abajoderecha,columna_abajoderecha,columna_abajo"
                           value="#{parametroBean.list_ins_ParametroBean}" var="item">
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="ID PARAM" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="ID PARAMETRO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.idParametro}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="NOMBRE" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="NOMBRE PARAMETRO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.nombre}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="VALOR" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="VALOR PARAMETRO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.valor}"/>
                 </ice:column>
          </ice:dataTable>

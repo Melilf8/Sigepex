@@ -43,6 +43,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminMensajesAyuda}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Administración / Mensajes de Ayuda</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -81,7 +82,7 @@
                  <tr><td colspan="4"></td></tr><tr><td colspan="4"></td></tr>
                 <tr>
                     <td colspan="4" align="left" style="font-weight:bold;">
-                        <ice:outputLabel id="lbl_idInterfaz" value="ID INTERFAZ" styleClass="cursivaPeq"/>
+                        <ice:outputLabel id="lbl_idInterfaz" value="ID INTERFAZ DE USUARIO" styleClass="cursivaPeq"/>
                     </td>
                 </tr>
                 <tr>                    
@@ -120,8 +121,8 @@
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
                 <tr>
                     <td align="center" colspan="4">
-                        <a id="enlace" href="#" onclick="mostrar(); return false;" style="color:#9D0000; text-decoration: none; font-weight: bold;">MOSTRAR LISTADO DE PANTALLAS</a>
-                        <a id="enlace2" class="oculto" href="#" onclick="ocultar(); return false;" style="color:#9D0000; text-decoration: none; font-weight: bold;">OCULTAR LISTADO DE PANTALLAS</a>
+                        <a id="enlace" href="#" onclick="mostrar(); return false;" style="color:#9D0000; text-decoration: none; font-weight: bold;">MOSTRAR LISTADO DE PANTALLAS DE USUARIO</a>
+                        <a id="enlace2" class="oculto" href="#" onclick="ocultar(); return false;" style="color:#9D0000; text-decoration: none; font-weight: bold;">OCULTAR LISTADO DE PANTALLAS DE USUARIO</a>
                     </td>
                 </tr>
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
@@ -138,7 +139,7 @@
                     <ice:outputText styleClass="datagrid" value="  "/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="ID INTERFAZ" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="ID INTERFAZ DE USUARIO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.id_IU}"/>
                 </ice:column>
                 <ice:column>
@@ -146,7 +147,7 @@
                     <ice:outputText styleClass="datagrid" value="  "/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="PANTALLA" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="PANTALLA DE USUARIO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.pantalla}"/>
                 </ice:column>
                 <ice:column>

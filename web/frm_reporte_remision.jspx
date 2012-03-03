@@ -36,6 +36,7 @@
                       <tr>
                         <td align="left" colspan="4" bgcolor="#E9E9E9">
                             <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_ReporteRemision}"/>
+                            <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Reportes / Lista de Remisión</ice:outputLabel>
                         </td>
                      </tr>
                   </table>

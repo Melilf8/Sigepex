@@ -42,9 +42,10 @@
              <ice:form>
               <table align="center" cellpadding="0" cellspacing="0" width="1200">
                   <tr>
-                    <td align="left" colspan="4" bgcolor="#E9E9E9">
+                    <td align="left" bgcolor="#E9E9E9" colspan="4">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_MantenimientoUsuarios}"/>
-                    </td>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Funcionarios / Administrar Usuarios</ice:outputLabel>
+                    </td>                    
                  </tr>
               </table>
             </ice:form>
@@ -85,6 +86,7 @@
                     <tr>
                         <td colspan="4" align="left" style="font-weight:bold;">
                             <ice:outputLabel id="lbl_identificacion" value="Identificación" styleClass="cursivaPeq"/>
+                            <ice:outputText id="lbl_msgErrorID" style="color:red;" value="#{funcionarioBean.msgErrorID}"></ice:outputText>
                         </td>
                     </tr>
                     <tr>
@@ -250,11 +252,7 @@
 								 <ice:column>
 									<f:facet name="header"><ice:outputText value="  " /></f:facet>
 									<ice:outputText styleClass="datagrid" value="  "/>
-								</ice:column>
-								<ice:column>
-										<f:facet name="header"><ice:outputText value="ESTADO" styleClass="alignIzq" /></f:facet>
-									<ice:outputText styleClass="datagrid" value="#{item.estado}"></ice:outputText>
-								</ice:column>
+								</ice:column>								
 						 </ice:dataTable>
                          <!-- PAGINADOR
                                 paginatorMaxPages: nos permitirá definir el número de páginas a mostrar en primera instancia.

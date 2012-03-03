@@ -68,7 +68,7 @@ public class IUsPorRolBean {
         this.checked = false;
         this.msg = "";
         this.ins_rolBean = new RolBean();
-        this.ins_rolBean.setMsg("ID Rol N/A");
+        this.ins_rolBean.setMsg("LISTA DE PANTALLAS POR ROL");
         this.Inicializar_list_ins_iusPorRolBean();
     }
 
@@ -232,7 +232,6 @@ public class IUsPorRolBean {
         }
     }
 
-
     private void Inicializar_list_ins_iusPorRolBean()
     {
          //this.CargarUIsSigepex();
@@ -347,7 +346,7 @@ public class IUsPorRolBean {
             try {
                 Servicio.IUsporRolAgregar(this);
                 //this.list_ins_iusPorRolBeanAdd(this);// <== para el PROTOTIPO
-                vst_msg_return = "Pantallas asignadas al rol exitosamente.";
+                vst_msg_return = "Pantallas asignadas al rol exitósamente.";
             } catch (Exception ex) {
                 Logger.getLogger(IUsPorRolBean.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -360,14 +359,14 @@ public class IUsPorRolBean {
         try {
             Integer vin_idRol = Integer.parseInt(event.getNewValue().toString().trim());
             this.setIdRol(vin_idRol);
+
+            this.ins_rolBean.setMsg("LISTA DE PANTALLAS POR ROL");
             if(vin_idRol == 0)
             {
-                this.ins_rolBean.setMsg("ID Rol N/A");
                 this.Inicializar_list_ins_iusPorRolBean();
             }
             else
             {
-                this.ins_rolBean.setMsg("ID Rol " + vin_idRol.toString());
                 this.CargarUIsPorRol(vin_idRol);
             }
         }
@@ -377,7 +376,7 @@ public class IUsPorRolBean {
         }
         this.setMsg("");
     }
-
+/*
     public void click(javax.faces.event.ActionEvent e) {
         this.setMsg("evento click");
     }
@@ -385,5 +384,5 @@ public class IUsPorRolBean {
     public void onload(javax.faces.event.ActionEvent e) {
        this.setMsg("evento onload");
     }
-
+*/
 }

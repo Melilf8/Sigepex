@@ -18,6 +18,8 @@ public class ParametroDao {
     {
         try
         {
+            ins_parametroBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -45,23 +47,31 @@ public class ParametroDao {
 
     public void listarParametros(ParametroBean ins_parametroBean) throws Exception
      {
-        ResultSet rs = null;
-        ArrayList list_ins_parametros = new ArrayList();
+        try
+        {
+            ins_parametroBean.setMsg("");
 
-        PreparedStatement stmt = null;
-        Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
-        stmt = cx.prepareStatement("call ST_PARAMETRO_LISTAR_TODOS()");
-        rs = stmt.executeQuery();
+            ResultSet rs = null;
+            ArrayList list_ins_parametros = new ArrayList();
 
-        ParametroBean ins_parametroBeanTmp;
-        while(rs.next()){
-            ins_parametroBeanTmp = new ParametroBean(rs.getInt("ID_PARAMETRO"),rs.getString("NOMBRE_PARAMETRO"),rs.getInt("VALOR_PARAMETRO"),"");
+            PreparedStatement stmt = null;
+            Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
+            stmt = cx.prepareStatement("call ST_PARAMETRO_LISTAR_TODOS()");
+            rs = stmt.executeQuery();
 
-            list_ins_parametros.add(ins_parametroBeanTmp);
+            ParametroBean ins_parametroBeanTmp;
+            while(rs.next()){
+                ins_parametroBeanTmp = new ParametroBean(rs.getInt("ID_PARAMETRO"),rs.getString("NOMBRE_PARAMETRO"),rs.getInt("VALOR_PARAMETRO"),"");
+
+                list_ins_parametros.add(ins_parametroBeanTmp);
+            }
+            rs.close();
+            stmt.close();
+
+            ins_parametroBean.setList_ins_ParametroBean(list_ins_parametros);
         }
-        rs.close();
-        stmt.close();
-
-        ins_parametroBean.setList_ins_ParametroBean(list_ins_parametros);
+        catch(Exception e){
+            ins_parametroBean.setMsg("Error al tratar de listar los parámetros.");
+        }
     }
 }

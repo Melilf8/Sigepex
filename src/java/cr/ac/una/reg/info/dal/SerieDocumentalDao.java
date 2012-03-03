@@ -18,6 +18,7 @@ public class SerieDocumentalDao {
     public void buscarSerieDocumental(SerieDocumentalBean ins_serieDocumentalBean) throws Exception{
         try
         {
+            ins_serieDocumentalBean.setMsg("");
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -29,7 +30,8 @@ public class SerieDocumentalDao {
             if(rs.isFirst())//<== LOCALIZADO
             {
                 ins_serieDocumentalBean.setIdSerieDocumental(rs.getInt("ID_SERIE_DOCUMENTAL"));
-                ins_serieDocumentalBean.setTipoDocumental(rs.getString("NOMBRE_SERIE_DOCUMENTAL"));
+                //ins_serieDocumentalBean.setTipoDocumental(rs.getString("NOMBRE_SERIE_DOCUMENTAL"));
+                ins_serieDocumentalBean.setTipoDocumental(rs.getString("TIPO_SERIE_DOCUMENTAL"));
                 ins_serieDocumentalBean.setMsg("");
             }
             else
@@ -46,9 +48,10 @@ public class SerieDocumentalDao {
     }
 
     public void agregarSerieDocumental(SerieDocumentalBean ins_serieDocumentalBean) throws Exception{
-
-        try
+       try
        {
+            ins_serieDocumentalBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -106,6 +109,8 @@ public class SerieDocumentalDao {
     {
         try
         {
+            ins_serieDocumentalBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -138,6 +143,8 @@ public class SerieDocumentalDao {
         Integer vint_count = 0;
         try
         {
+            ins_serieDocumentalBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -178,23 +185,36 @@ public class SerieDocumentalDao {
 
     public void listarSeriesDocumentales(SerieDocumentalBean ins_serieDocumentalBean) throws Exception
      {
-        ResultSet rs = null;
-        ArrayList list_ins_seriesDoc = new ArrayList();
-        PreparedStatement stmt = null;
-        Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
-        stmt = cx.prepareStatement("call ST_SERIE_DOCUMENTAL_LISTAR_TODAS()");
-        rs = stmt.executeQuery();
+        try{
+            ins_serieDocumentalBean.setMsg("");
 
-        SerieDocumentalBean ins_serieDocumentalBeanTmp;
-        while(rs.next()){
-            ins_serieDocumentalBeanTmp = new SerieDocumentalBean(rs.getInt("ID_SERIE_DOCUMENTAL"),rs.getString("NOMBRE_SERIE_DOCUMENTAL"),"",false);
+            ResultSet rs = null;
+            ArrayList list_ins_seriesDoc = new ArrayList();
+            PreparedStatement stmt = null;
+            Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
+            stmt = cx.prepareStatement("call ST_SERIE_DOCUMENTAL_LISTAR_TODAS()");
+            rs = stmt.executeQuery();
 
-            list_ins_seriesDoc.add(ins_serieDocumentalBeanTmp);
+            SerieDocumentalBean ins_serieDocumentalBeanTmp;
+            while(rs.next()){
+                ins_serieDocumentalBeanTmp = new SerieDocumentalBean(
+                        rs.getInt("ID_SERIE_DOCUMENTAL"),
+                        //rs.getString("NOMBRE_SERIE_DOCUMENTAL"),
+                        rs.getString("TIPO_SERIE_DOCUMENTAL"),
+                        "",
+                        false
+                 );
+
+                list_ins_seriesDoc.add(ins_serieDocumentalBeanTmp);
+            }
+            rs.close();
+            stmt.close();
+
+            ins_serieDocumentalBean.setList_ins_SerieDocBean(list_ins_seriesDoc);
         }
-        rs.close();
-        stmt.close();
-
-        ins_serieDocumentalBean.setList_ins_SerieDocBean(list_ins_seriesDoc);
+        catch(Exception e){
+            ins_serieDocumentalBean.setMsg("Error al intentar listar las series documentales.... "+e.getMessage());
+        }
     }
 
 }

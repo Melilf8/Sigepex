@@ -21,6 +21,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminIUsPorRol}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Administración / Pantallas por Rol</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -76,7 +77,7 @@
                  <!-- MENSAJES -->
                  <tr>
                     <td colspan="4" align="center">
-                        <ice:outputText styleClass="labelMensajeError" value="#{iusxrolBean.ins_rolBean.msg}"></ice:outputText>
+                        <ice:outputText styleClass="labelMensajeError" style="color:red;" value="#{iusxrolBean.ins_rolBean.msg}"></ice:outputText>
                     </td>
                 </tr>
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
@@ -92,7 +93,7 @@
                     <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="PANTALLAS" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="PANTALLAS DE USUARIO" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.nombreIU}"/>
                 </ice:column>
                 <ice:column>

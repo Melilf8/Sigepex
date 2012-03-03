@@ -26,6 +26,7 @@ public class FuncionarioDao {
     public void buscarLogin(LoginBean ins_loginBean) throws Exception{
         try
         {
+            ins_loginBean.setMsg("");
 
             vst_mensaje = "";
             ResultSet rs = null;
@@ -77,6 +78,8 @@ public class FuncionarioDao {
 
     public void buscarFuncionarioPorNombre(FuncionarioBean ins_funcionarioBean) throws Exception{
         try{
+            ins_funcionarioBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             FuncionarioBean ins_funcionarioBeanTmp;
@@ -119,6 +122,8 @@ public class FuncionarioDao {
     public void buscarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
         try
         {
+           ins_funcionarioBean.setMsg("");
+
            if(!ins_funcionarioBean.getIdentificacion().equals("")
                 && ins_funcionarioBean.getIdentificacion().length()== 9)
            {
@@ -229,10 +234,11 @@ public class FuncionarioDao {
         }
     }
 
-    public void agregarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
-       
+    public void agregarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{       
         try
-       {
+        {
+            ins_funcionarioBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -314,7 +320,8 @@ public class FuncionarioDao {
     {
         try
         {
-           
+            ins_funcionarioBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -369,7 +376,8 @@ public class FuncionarioDao {
     {
          try
          {
-             
+             ins_funcionarioBean.setMsg("");
+
              ResultSet rs = null;
              PreparedStatement stmt = null;
              Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -417,7 +425,8 @@ public class FuncionarioDao {
     public void actualizarEstadoFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
         try
         {
-            
+            ins_funcionarioBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -497,8 +506,6 @@ public class FuncionarioDao {
             ins_funcionarioBean.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
             //ins_funcionarioBean.setRol(rs.getString("DEPENDENCIA"));
             */
-
-
 
             list_ins_funcionarios.add(ins_funcionarioBean);
         }

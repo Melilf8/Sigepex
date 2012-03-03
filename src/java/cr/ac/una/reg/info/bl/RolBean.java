@@ -26,7 +26,7 @@ public class RolBean {
         this.idRol = 0;
         this.nombreRol = "";
         this.descripcionRol = "";
-        this.msg = "";
+        this.msg = "LISTA DE ROLES DE USUARIO";
         this.list_ins_RolBean = new ArrayList();
         this.Inicializar_list_ins_RolBean();
     }

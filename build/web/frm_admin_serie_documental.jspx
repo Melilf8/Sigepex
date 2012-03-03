@@ -34,6 +34,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminSerieDocumental}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Administración / Series Documentales</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -73,13 +74,13 @@
                  </tr>                 
                 <tr>
                     <td></td>
-                    <td align="left" style="font-weight:bold;">
-                        <ice:outputLabel id="lbl_idSerieDocumental" value="ID SERIE" styleClass="cursivaPeq"/>
+                    <td align="left" style="font-weight:bold; width:105px;">
+                        <ice:outputLabel id="lbl_idSerieDocumental" value="ID SERIE DOC" styleClass="cursivaPeq"/>
                     </td>
-                    <td align="left" colspan="2" style="font-weight:bold;"><ice:outputLabel id="lbl_tipo" value="TIPO DOCUMENTAL" styleClass="cursivaPeq"/></td>
+                    <td align="left" colspan="2" style="font-weight:bold;margin-left:10px;"><ice:outputLabel id="lbl_tipo" value="TIPO SERIE DOCUMENTAL" styleClass="cursivaPeq"/></td>
                 </tr>
                 <tr>
-                    <td style="width: 190px;"></td>
+                    <td style="width: 183px;"></td>
                      <td align="left">
                          <ice:inputText id="txt_in_idSerieDoc"  styleClass="textBoxPeq" value="#{serieDocBean.idSerieDocumental}" maxlength="10" tabindex="1"/>
                      </td>
@@ -118,11 +119,11 @@
                     <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="ID SERIE" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="ID SERIE DOC" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.idSerieDocumental}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="TIPO DOCUMENTAL" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="TIPO SERIE DOCUMENTAL" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.tipoDocumental}"/>
                 </ice:column>
                 <ice:column>

@@ -6,8 +6,8 @@
 package cr.ac.una.reg.info.bl;
 
 import javax.faces.context.FacesContext;
-import com.icesoft.faces.context.effects.Effect;
-import com.icesoft.faces.context.effects.Highlight;
+//import com.icesoft.faces.context.effects.Effect;
+//import com.icesoft.faces.context.effects.Highlight;
 import java.awt.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
@@ -322,7 +322,7 @@ public class LoginBean {
 
     /*Eliminar este metodo*/
      // effect that shows a value binding chance on there server
-    protected Effect valueChangeEffect;
+    //protected Effect valueChangeEffect;
     private List menuModel;
     public List getMenuModel() {
         return menuModel;
@@ -377,10 +377,10 @@ public class LoginBean {
         //sub1_1.getChildren().add(sub1_1_3);
     }
     /*Eliminar este metodo*/
-    private Effect textEffect;
-    public Effect getTextEffect(){return textEffect;}
-    public void setTextEffect(Effect effect){textEffect = effect;}
-    public String invokeEffect(){textEffect = new Highlight();return null;}
+    //private Effect textEffect;
+    //public Effect getTextEffect(){return textEffect;}
+    //public void setTextEffect(Effect effect){textEffect = effect;}
+    //public String invokeEffect(){textEffect = new Highlight();return null;}
 
 
 
@@ -468,7 +468,7 @@ public class LoginBean {
         param = getRequestParameter("myParam");
 
         // highlight server side backing bean values.
-        valueChangeEffect.setFired(false);
+        //valueChangeEffect.setFired(false);
 
     }
 

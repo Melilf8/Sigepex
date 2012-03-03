@@ -133,8 +133,6 @@
       <managed-bean-scope>session</managed-bean-scope>
    </managed-bean>
 
-  
-
      <!-- ================= REPORTE REMISION  BEAN ===================================== -->
      <managed-bean>
    <managed-bean-name>reporteRemision</managed-bean-name>

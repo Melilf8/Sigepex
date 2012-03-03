@@ -4,7 +4,6 @@ $(document).ready(function()
 		$("#btnBuscar").click(function() {
 			Buscar();
 		});
-    });
  $(document).ready(function(){
                    $("#enlaceocultar").click(function(evento){
                        $("#listaSeriesDoc").css("display", "none");
@@ -91,11 +90,11 @@ function CrearTabla()
 	}
 	output+="</tbody></table>";
 	$("#tableSpace").append(output);
-	$("#myTable").tablesorter(); 	
+	$("#myTable").tablesorter(); 
+	
+	
 	 
 }
-
-
 
 
 

@@ -37,6 +37,7 @@ public class FuncionarioBean {
     private ArrayList<SelectItem> list_ins_SelectItem_estados;
     private boolean visible = false;
     private Boolean checked;
+    private String msgErrorID;
 
     // records the param value for the menu item which fired the event
     // Despues de las pruebas debo eliminar este atributo.
@@ -56,6 +57,7 @@ public class FuncionarioBean {
         this.idDependencia = 0;
         this.msg = "";
         this.list_ins_funcionarios = new ArrayList();
+        this.msgErrorID = "";
 
         this.getList_ins_SelectItem_roles();
         this.getList_ins_SelectItem_estados();
@@ -144,6 +146,12 @@ public class FuncionarioBean {
      // ATRIBUTO: msg
     public String getMsg() { return msg; }
     public void setMsg(String msg) { this.msg = msg; }
+
+    // ATRIBUTO: msgErrorID
+    public String getMsgErrorID() { return msgErrorID; }
+    public void setMsgErrorID(String msgErrorID) { 
+        this.msgErrorID = msgErrorID;
+    }
 
     /* LLENADO DE LOS COMBOS DEL FORMULARIO*/
     
@@ -312,20 +320,16 @@ public class FuncionarioBean {
         String myParam = (String) params.get("myParam");
         if (myParam != null && myParam.length() > 0) {
             if(myParam.equals("txt_in_identificacion"))
-                validarNumeros(myParam);
+            {
+                if(new ToolBean().ValidarEsNumero(myParam))
+                {
 
+                }
+            }
             setParam(myParam);
         } else {
             setParam("not defined");
         }
-    }
-
-    // Metodo en fase de prueba
-    private Boolean validarNumeros(String param)
-    {
-        Boolean ok = false;
-
-        return ok;
     }
 
 
@@ -368,16 +372,25 @@ public class FuncionarioBean {
                  // PARA ABRIR EL POPUP
                  if(this.getIdentificacion().equals("")|| this.getIdentificacion().length()< 9)
                  {
-                    /* El popup se abre siempre y cuando la consulta haya arrojado mas de un registro
-                     * si la consulta retorna solo un funcionario este se carga en el form de usuarios.
-                     */
-                    if(this.getList_ins_funcionarios().size()== 1)
-                    {
-                        FuncionarioBean ins_funcionarioBean_Tmp = (FuncionarioBean)this.getList_ins_funcionarios().get(0);
-                        cargar_this_ins_FuncionarioBean(ins_funcionarioBean_Tmp);
-                    }
-                    else
-                        this.setVisible(true);
+                     if(new ToolBean().ValidarEsNumero(this.getIdentificacion().trim()))
+                     {
+                         this.setMsgErrorID("");
+                        /* El popup se abre siempre y cuando la consulta haya arrojado mas de un registro
+                         * si la consulta retorna solo un funcionario este se carga en el form de usuarios.
+                         */
+                        if(this.getList_ins_funcionarios().size()== 1)
+                        {
+                            FuncionarioBean ins_funcionarioBean_Tmp = (FuncionarioBean)this.getList_ins_funcionarios().get(0);
+                            cargar_this_ins_FuncionarioBean(ins_funcionarioBean_Tmp);
+                        }
+                        else
+                            this.setVisible(true);
+                     }
+                     else
+                     {
+                        this.setMsgErrorID("* Formato inválido. Ejemplo: 101110111");
+                        return "";
+                     }
                  }
             }
             else
@@ -437,17 +450,35 @@ public class FuncionarioBean {
         }
         else
         {
-            Servicio.funcionarioAgregar(this);
-
-            if(this.getIdentificacion().equals(""))
-                return "noestaregistrado";
-            else
+            if(new ToolBean().ValidarEsNumero(this.getIdentificacion().trim()))
             {
-                if(this.getMsg().equals("El funcionario ya está registrado en el sistema."))
-                    return "yaexiste";
+                if(this.getIdentificacion().length() < 9)
+                {
+                    this.setMsgErrorID("* La identificación no puede ser menor a 9 digitos.");
+                    return "";
+                }
                 else
-                    return "registrado";
+                {
+                    this.setMsgErrorID("");
+
+                    Servicio.funcionarioAgregar(this);
+
+                    if(this.getIdentificacion().equals(""))
+                        return "noestaregistrado";
+                    else
+                    {
+                        if(this.getMsg().equals("El funcionario ya está registrado en el sistema."))
+                            return "yaexiste";
+                        else
+                            return "registrado";
+                    }
+                }
             }
+            else
+             {
+                this.setMsgErrorID("* Formato inválido... ==> 101110111");
+                return "";
+             }
         }
     }
 
@@ -491,12 +522,30 @@ public class FuncionarioBean {
         }
         else
         {
-            Servicio.funcionarioModificar(this);
+            if(new ToolBean().ValidarEsNumero(this.getIdentificacion().trim()))
+            {
+                if(this.getIdentificacion().length() < 9)
+                {
+                    this.setMsgErrorID("* La identificación no puede ser menor a 9 dígitos.");
+                    return "";
+                }
+                else
+                {
+                    this.setMsgErrorID("");
 
-            if(this.getIdentificacion().equals(""))
-                return "noexiste";
+                    Servicio.funcionarioModificar(this);
+
+                    if(this.getIdentificacion().equals(""))
+                        return "noexiste";
+                    else
+                        return "actualizado";
+                }
+            }
             else
-                return "actualizado";
+            {
+                this.setMsgErrorID("* Formato inválido... ==> 101110111");
+                return "";
+            }
         }
     }
 

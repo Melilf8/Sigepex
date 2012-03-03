@@ -339,7 +339,7 @@ public class SerieDocumentalBean {
             try {
                 Servicio.seriedocumentalEliminar(this);
                 //this.list_ins_SerieDocBeanRemoveMulti(this);// <== para el PROTOTIPO
-                vst_msg_return = "Series documentales eliminadas exitosamente.";
+                vst_msg_return = "Series documentales eliminadas exitósamente.";
             } catch (Exception ex) {
                 Logger.getLogger(SerieDocumentalBean.class.getName()).log(Level.SEVERE, null, ex);
             }

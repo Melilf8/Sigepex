@@ -22,6 +22,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminRoles}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Administración / Roles de Usuario</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -60,8 +61,8 @@
                  <tr><td colspan="4"></td></tr> <tr><td colspan="4"></td></tr> <tr><td colspan="4"></td></tr>
                 <tr>
                     <td align="left" style="font-weight:bold; margin-left:10px;"><ice:outputLabel id="lbl_idRol" value="ID Rol"/></td>
-                    <td align="left" style="font-weight:bold; margin-left:10px;"><ice:outputLabel id="lbl_nombre" value="Nombre"/></td>
-                    <td align="left" style="font-weight:bold; margin-left:10px;"><ice:outputLabel id="lbl_descripcion" value="Descripción"/></td>
+                    <td align="left" style="font-weight:bold; margin-left:10px;"><ice:outputLabel id="lbl_nombre" value="Nombre Rol"/></td>
+                    <td align="left" style="font-weight:bold; margin-left:10px;"><ice:outputLabel id="lbl_descripcion" value="Descripción Rol"/></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -97,7 +98,7 @@
                  <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
                  <tr>
                     <td colspan="4" align="center">
-                        <ice:outputText styleClass="labelMensajeError" value="#{rolBean.msg}"></ice:outputText>
+                        <ice:outputText styleClass="labelMensajeError" style="color:red;" value="#{rolBean.msg}"></ice:outputText>
                     </td>
                 </tr>
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
@@ -114,11 +115,11 @@
                     <ice:outputText styleClass="datagrid" value="#{item.idRol}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="NOMBRE" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="NOMBRE ROL" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.nombreRol}"/>
                 </ice:column>
                 <ice:column>
-                    <f:facet name="header"><ice:outputText value="DESCRIPCION" styleClass="alignIzq" /></f:facet>
+                    <f:facet name="header"><ice:outputText value="DESCRIPCION ROL" styleClass="alignIzq" /></f:facet>
                     <ice:outputText styleClass="datagrid" value="#{item.descripcionRol}"/>
                 </ice:column>
          </ice:dataTable>

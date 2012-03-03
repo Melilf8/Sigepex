@@ -67,14 +67,6 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>ReporteExpediente</servlet-name>
-        <servlet-class>cr.ac.una.reg.info.Reportes.ReporteExpediente</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ReporteExpedientes</servlet-name>
-        <servlet-class>cr.ac.una.reg.info.Reportes.ReporteExpedientes</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Persistent Faces Servlet</servlet-name>
         <url-pattern>/xmlhttp/*</url-pattern>
@@ -99,15 +91,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>ReporteExpediente</servlet-name>
-        <url-pattern>/ReporteExpediente</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ReporteExpedientes</servlet-name>
-        <url-pattern>/ReporteExpedientes</url-pattern>
-    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

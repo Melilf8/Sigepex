@@ -20,6 +20,8 @@ public class MensajeAyudaDao {
     public void buscarMsgAyudaIU(MensajeAyudaBean ins_msgAyudaBean) throws Exception{
         try
         {
+            ins_msgAyudaBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -49,7 +51,9 @@ public class MensajeAyudaDao {
 
     public void agregarMsgAyudaIU(MensajeAyudaBean ins_msgAyudaBean) throws Exception{
         try
-       {
+        {
+            ins_msgAyudaBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -107,6 +111,7 @@ public class MensajeAyudaDao {
     {
         try
         {
+            ins_msgAyudaBean.setMsg("");
 
             ResultSet rs = null;
             PreparedStatement stmt = null;

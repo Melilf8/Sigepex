@@ -5,7 +5,6 @@
 
 package cr.ac.una.reg.info.dal;
 import java.sql.Connection;
-import java.sql.SQLException;
 import javax.sql.DataSource;
 import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 /**
@@ -15,9 +14,8 @@ import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
  * @author Luis Granados
  */
 public class DatabaseUtil {
-     private Connection conn;
-    
-     private static DataSource connectionFactory=null;
+
+    private static DataSource connectionFactory=null;
 
     static {
         MysqlConnectionPoolDataSource connectionFactoryTmp = new MysqlConnectionPoolDataSource();
@@ -43,19 +41,6 @@ public class DatabaseUtil {
         catch(Exception e){
         throw new Exception ("Error de conexion a la base de datos.");
         }
-    }
-
-
-     public void closeConnection() throws SQLException
-    {
-                try
-                {
-                    conn.close();
-                }
-                catch (SQLException ex)
-                {
-                    ex.printStackTrace();
-                }
     }
 }
 

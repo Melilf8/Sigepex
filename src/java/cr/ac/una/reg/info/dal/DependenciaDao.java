@@ -17,26 +17,32 @@ public class DependenciaDao {
 
     public void listarDependencias(DependenciaBean ins_dependenciaBean) throws Exception
      {
-        ResultSet rs = null;
-        ArrayList list_ins_dependencias = new ArrayList();
+        try
+        {
+            ResultSet rs = null;
+            ArrayList list_ins_dependencias = new ArrayList();
+            DependenciaBean ins_dependenciaBeanTmp;
 
-        PreparedStatement stmt = null;
-        Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
-        stmt = cx.prepareStatement("call ST_DEPENDENCIA_LISTAR_TODAS()");
-        rs = stmt.executeQuery();
+            PreparedStatement stmt = null;
+            Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
+            stmt = cx.prepareStatement("call ST_DEPENDENCIA_LISTAR_TODAS()");
+            rs = stmt.executeQuery();
 
-        while(rs.next()){
-            ins_dependenciaBean = new DependenciaBean();
-            ins_dependenciaBean.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
-            ins_dependenciaBean.setNombreDependencia(rs.getString("NOMBRE_DEPENDENCIA"));
-            ins_dependenciaBean.setDescripcionDependencia(rs.getString("DESCRIPCION_DEPENDENCIA"));
+            while(rs.next()){
+                ins_dependenciaBeanTmp = new DependenciaBean(
+                        rs.getInt("ID_DEPENDENCIA"),
+                        rs.getString("NOMBRE_DEPENDENCIA"),
+                        rs.getString("DESCRIPCION_DEPENDENCIA")
+                        );
+                list_ins_dependencias.add(ins_dependenciaBeanTmp);
+            }
+            rs.close();
+            stmt.close();
 
-            list_ins_dependencias.add(ins_dependenciaBean);
+            ins_dependenciaBean.setList_ins_dependencia(list_ins_dependencias);
         }
-        rs.close();
-        stmt.close();
-
-        ins_dependenciaBean = new DependenciaBean();
-        ins_dependenciaBean.setList_ins_dependencia(list_ins_dependencias);
+        catch(Exception e){
+            throw new Exception("Error al intentar listar las dependencias. "+ e.getMessage());
+        }
     }
 }

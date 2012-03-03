@@ -19,6 +19,8 @@ public class IUSigepexDao {
     public void listarIUsSigepex(IUSigepexBean ins_uiSigepexBean) throws Exception
      {
         try {
+            ins_uiSigepexBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();

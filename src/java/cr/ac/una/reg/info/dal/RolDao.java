@@ -23,6 +23,8 @@ public class RolDao {
     public void buscarRol(RolBean ins_rolBean) throws Exception{
         try
         {
+            ins_rolBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -53,9 +55,10 @@ public class RolDao {
     }
 
     public void agregarRol(RolBean ins_rolBean) throws Exception{
-
         try
        {
+            ins_rolBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -119,6 +122,8 @@ public class RolDao {
     {
         try
         {
+            ins_rolBean.setMsg("");
+
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -134,7 +139,7 @@ public class RolDao {
                 stmt.setString(2,ins_rolBean.getDescripcionRol());
                 stmt.setString(3,ins_rolBean.getNombreRol());
                 stmt.execute();
-
+                
                 ins_rolBean.setMsg("El rol de usuario se actualizó con éxito.");
             }
             else
@@ -150,6 +155,8 @@ public class RolDao {
     {
         try
         {
+            ins_rolBean.setMsg("");
+            
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -160,15 +167,26 @@ public class RolDao {
 
             if(rs.isFirst())//<== LOCALIZADO
             {
-                stmt = cx.prepareStatement("call ST_ROL_ELIMINAR(?)");
+                ResultSet resultset = null;
+                stmt = cx.prepareStatement("call ST_ROL_CANTIDAD_FUNCIONARIOSXROL(?)");
                 stmt.setInt(1,ins_rolBean.getIdRol());
-                stmt.execute();
+                resultset = stmt.executeQuery();
+                resultset.next();
+                if(!resultset.isFirst())// <== NO HAY USUARIOS RELACIONADOS AL ROL
+                {
+                    stmt = cx.prepareStatement("call ST_ROL_ELIMINAR(?)");
+                    stmt.setInt(1,ins_rolBean.getIdRol());
+                    stmt.execute();
 
-                ins_rolBean.setMsg("El rol de usuario se eliminó con éxito.");
+                    ins_rolBean.setMsg("El rol de usuario se eliminó con éxito.");
+                }
+                else
+                {
+                    ins_rolBean.setMsg("No se puede eliminar el rol, hay usuarios que lo están usando.");
+                }
             }
             else
                 ins_rolBean.setMsg("El rol de usuario no existe en el sistema.");
-
         }
         catch(Exception e){
             ins_rolBean.setMsg("Error al tratar de eliminar el rol de usuario.. "+e.getMessage());

@@ -254,24 +254,24 @@ function cargarMenu_DOM(){
         {
             vst_codigoHtml += '                                        <div><ul>';            
             if(losforms.indexOf('frm_consultar_prestamo') != -1)
-                vst_codigoHtml += '                                               <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_consultar_prestamo.jspx\')\"><span>Consultar Prestamo Expediente</span></a></li>'
+                vst_codigoHtml += '                                               <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_consultar_prestamo.jspx\')\"><span>Consultar Préstamo Expediente</span></a></li>'
             if(losforms.indexOf('frm_solicitar_prestamo') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_solicitar_prestamo.jspx\')\"><span>Solicitar Prestamo Expediente</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_solicitar_prestamo.jspx\')\"><span>Solicitar Préstamo Expediente</span></a></li>';
             if(losforms.indexOf('frm_aprobar_prestamo') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_aprobar_prestamo.jspx\')\"><span>Aprobar Prestamo Expediente</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_aprobar_prestamo.jspx\')\"><span>Aprobar Préstamo Expediente</span></a></li>';
             vst_codigoHtml += '                                        </ul></div>';
         }
 		vst_codigoHtml += '                                    </li>';
-		vst_codigoHtml += '                                    <li><a href=\"#\" class=\"parent\"><span>Lista Remision</span></a>';
+		vst_codigoHtml += '                                    <li><a href=\"#\" class=\"parent\"><span>Lista Remisión</span></a>';
         if(losforms.indexOf('frm_consultar_remision') != -1 || losforms.indexOf('frm_llenar_remision') != -1 || losforms.indexOf('frm_aprobar_remision') != -1)
         {
             vst_codigoHtml += '                                        <div><ul>';
             if(losforms.indexOf('frm_consultar_remision') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_consultar_remision.jspx\')\"><span>Consultar Lista Remision</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_consultar_remision.jspx\')\"><span>Consultar Lista Remisión</span></a></li>';
             if(losforms.indexOf('frm_llenar_remision') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_llenar_remision.jspx\')\"><span>Llenar Lista Remision</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_llenar_remision.jspx\')\"><span>Llenar Lista Remisión</span></a></li>';
             if(losforms.indexOf('frm_aprobar_remision') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_aprobar_remision.jspx\')\"><span>Aprobar Lista Remision</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_aprobar_remision.jspx\')\"><span>Aprobar Lista Remisión</span></a></li>';
             vst_codigoHtml += '                                        </ul></div>';
         }
         vst_codigoHtml += '                                    </li>';
@@ -288,18 +288,18 @@ function cargarMenu_DOM(){
         {
             vst_codigoHtml += '                                        <div><ul>';
             if(losforms.indexOf('frm_reporte_prestamo') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_reporte_prestamo.jspx\')\"><span>Reportes Prestamo Expedientes</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_reporte_prestamo.jspx\')\"><span>Reportes Préstamo Expedientes</span></a></li>';
             if(losforms.indexOf('frm_reporte_remision') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_reporte_remision.jspx\')\"><span>Reportes Lista de Remision</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_reporte_remision.jspx\')\"><span>Reportes Lista de Remisión</span></a></li>';
             vst_codigoHtml += '                                        </ul></div>';
         }
 		vst_codigoHtml += '                                    </li>';
-		vst_codigoHtml += '                                    <li class=\"last\"><a href=\"#\" class=\"parent\"><span>Administracion</span></a>';
+		vst_codigoHtml += '                                    <li class=\"last\"><a href=\"#\" class=\"parent\"><span>Administración</span></a>';
         if(losforms.indexOf('frm_parametros') != -1 || losforms.indexOf('frm_admin_roles') != -1 || losforms.indexOf('frm_admin_roles') != -1 || losforms.indexOf('frm_admin_ius_por_rol') != -1 || losforms.indexOf('frm_admin_serie_documental') != -1 || losforms.indexOf('frm_admin_mensajes_ayuda') != -1)
         {
             vst_codigoHtml += '                                        <div><ul>';
             if(losforms.indexOf('frm_parametros') != -1)
-                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_parametros.jspx\')\"><span>Parametros SIGEPEX</span></a></li>';
+                vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_parametros.jspx\')\"><span>Parámetros SIGEPEX</span></a></li>';
             if(losforms.indexOf('frm_admin_roles') != -1)
                 vst_codigoHtml += '                                                <li><a href=\"#\" onclick=\"cambiarPagina(\'frm_admin_roles.jspx\')\"><span>Roles de Usuario</span></a></li>';
             if(losforms.indexOf('frm_admin_ius_por_rol') != -1)

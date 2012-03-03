@@ -12,24 +12,6 @@
           <img src="/Sigepex/imagenes/barraencabezado.jpg" class="img"/>
           <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
         <title>Login</title>
-
-                    <script type="text/javascript" src="/Sigepex/scripts/menu.js"></script>
-
-            <!-- JQUERY -->
-            <script src="/Sigepex/scripts/jquery-1.3.2.min.js"></script>
-
-            <script type="text/javascript" src="/Sigepex/scripts/jqueryUI/jquery.tablesorter.js"></script>
-            <script type="text/javascript" src="/Sigepex/scripts/Reportes/prototype.js"></script>
-            <!-- JQUERY UI js's -->
-
-            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.core.js"></script>
-            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.widget.js"></script>
-            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.datepicker.js"></script>
-            <!-- Style -->
-            <link rel="stylesheet" href="/Sigepex/css2/Reportes/style.css" type="text/css" />
-            <link rel="stylesheet" href="/Sigepex/css2/Reportes/jquery.ui.all.css" />
-            <link rel="stylesheet" href="/Sigepex/css2/Reportes/jquery.ui.datepicker.css"/>
-            <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/scripts/js_funciones.js"></script>
         <link rel="stylesheet" type="text/css" href="/Sigepex/css2/menu.css"/>
       </head>
