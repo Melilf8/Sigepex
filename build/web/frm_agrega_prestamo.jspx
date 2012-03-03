@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : frm_agrega_solicitu
+    Created on : 23/02/2012, 12:58:10 PM
+    Author     : Melvin
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+  <html>
+  <head>
+        <title>frm_prestamo_prestamo</title>
+        <img src="/Sigepex/imagenes/barraencabezado.jpg" class="img"/>
+        <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+        <ice:outputStyle href="/css2/menu.css" id="outputStyle2"/>
+        <script type="text/javascript" src="/scripts/jquery.js"></script>
+        <script type="text/javascript" src="/scripts/menu.js"></script>
+        <script> function cerrar() { window.close(); }</script>
+  </head>
+  <body onload="getURLParam('id')">
+    <ice:form id="frm_listar_funcionarios">
+        <table width="800" border="0" cellspacing="0" align="center">
+            <tr><td colspan ="7" align="center">
+                <img src="/Sigepex/imagenes/barralistado_estudiantes.jpg" align="center" heigh="10"  width="700"/>
+            </td>
+            <ice:inputText id="txt_in_identificacion"  styleClass="textBoxPeq" value="#{funcionarioBean.identificacion}" style="visibility:hidden"/>
+            </tr>
+             <tr>
+                <td colspan ="7" align="left">
+                    <!-- BOTON ACEPTAR -->
+                    <ice:commandButton id="btn_aceptar" styleClass="formatorojo" value="Aceptar" action="#{funcionarioBean.verificarChecks}"/>
+                    <ice:commandButton styleClass="formatorojo" value="Cerrar" onclick="cerrar(); return false;"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" align="center">
+                    <ice:outputText styleClass="labelMensajeError" value="#{funcionarioBean.msg}"/>
+                </td>
+            </tr>
+        </table>
+
+         <center>
+             <ice:dataTable id="data" styleClass="scrollerTable" headerClass="standardTable_Header"
+                          footerClass="standardTable_Header"
+                          columnClasses="columna_abajoderecha,columna_abajoderecha,columna_abajo"
+                          value="#{funcionarioBean.list_ins_funcionarios}" var="item">
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value=" " /></f:facet>
+                    <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="CEDULA" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.identificacion}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="NOMBRE" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.nombre}" />
+                </ice:column>
+                 <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="1ºAPELLIDO" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.apellido1}" />
+                </ice:column>
+                 <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="2ºAPELLIDO" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.apellido2}"/>
+                </ice:column>
+                 <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+                <ice:column>
+                        <f:facet name="header"><ice:outputText value="ESTADO" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.estado}"></ice:outputText>
+                </ice:column>
+         </ice:dataTable>
+       </center>
+     </ice:form>
+</body>
+  </html>
+</f:view>
