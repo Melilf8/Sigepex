@@ -1,0 +1,318 @@
+/* 
+    Document   : styles-nav
+    Created on : Nov 21, 2011, 2:55:57 PM
+    Author     : estudiante
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* Global navy
+********************************/
+
+#globalNav {
+	height: 90px;
+}
+
+#globalNav ul {
+	list-style: none;
+}	
+
+#mainNav {
+	width: 963px;
+	margin: auto;
+}
+
+#mainNav ul.selected {
+    display: block;
+    margin: 1px 0 1px 1px;
+}
+
+#primaryMenu {
+    height: 45px;    
+	margin-left: 1px;
+}
+
+#primaryMenu ul {
+    background: url("images/nav/globalNav-sprite.png") no-repeat scroll 0 0 transparent;    
+	height: 45px;    
+    width: 962px;
+	margin: 0;
+}
+
+#primaryMenu ul li {    
+    height: 45px;    
+    position: relative;  
+	float: left;
+}
+
+#primaryMenu ul li a {
+	line-height: 35px;
+	text-decoration: none;
+	margin-top: 10px;
+}
+
+#primaryMenu #primary_howItWorks {
+	float: right;
+	width: 115px;	
+	padding: 0;
+}
+
+#primaryMenu #primary_howItWorks a {
+	color: #f29da1;
+	margin: 14px 16px 0 0;	
+	display: block;		
+	float:right;
+	background: url("images/nav/globalNav-sprite.png") no-repeat scroll -29px -63px transparent;    		
+	width: 115px;
+	height: 20px;
+}
+
+#primaryMenu #primary_howItWorks a p {
+	text-indent: -9999px;
+}
+
+
+/* Buttons Nav */
+
+.btn-nav {
+	font-size: 18px;
+	display: inline-block;
+	text-transform: capitalize;	
+	font-weight: bold;
+	line-height: 45px;
+	width: auto;
+	/*color: white;*/
+}
+
+.btn span {
+    cursor: pointer;
+    display: inline-block;    
+    vertical-align: top;
+	color: #ffffff;
+}
+
+.btn-nav .lCorner, .btn-nav .rCorner {
+	width: 20px;
+	height: 37px;		
+}
+
+.btn-nav .btn-text  {
+	width: auto;
+	height: 37px;		
+}
+
+/* hover */
+
+
+.btn-nav:hover span {
+	background: url('images/global/btn-sprite.png') no-repeat left -39px;
+	outline: none;
+}
+
+.btn-nav:hover .lCorner {
+	background-position: left -39px;	 	
+}
+
+.btn-nav:hover .rCorner {	
+	 background-position: right -39px;	
+}
+
+.btn-nav:hover .btn-text  {
+	background-position: -20px -39px;	
+}
+
+/* Active*/
+li.selected .btn-nav .lCorner, li.selected .btn-nav .rCorner {
+	width: 28px;
+	height: 37px;		
+}
+
+li.selected .btn-nav .btn-text  {
+	width: auto;
+	height: 37px;		
+}
+
+li.selected .btn-nav  span {
+	background: url('images/global/btn-sprite.png') no-repeat 0 0;
+	color: #d90000;
+}
+
+li.selected .btn-nav  .lCorner {
+    background-position: left 0 ;
+}
+
+li.selected .btn-nav  .rCorner {
+    background-position: right 0;
+}
+
+li.selected .btn-nav .btn-text {
+	background-position: center 0;
+    text-align: center;
+	width: auto;
+}
+
+/* Secondary Menu */
+
+.home-icon-nav {
+	margin-left: 12px;
+}
+
+li.selected .home-icon-nav .lCorner, li.selected .home-icon-nav .rCorner {
+	width: 24px;	
+}
+
+.secondaryMenu, .home-bar {
+    float:left;
+	width: 963px;	
+	background: url("images/nav/globalNav-sprite.png") no-repeat scroll 0 -85px transparent;    			
+}
+
+.home-bar {
+	background-position: 0 -47px;
+	height: 12px;
+}
+
+.secondaryMenu ul {
+    list-style: none;
+}
+
+/* Tray */
+
+.trayContent {
+	background: url("images/nav/tray-bg.png") no-repeat scroll 0 bottom transparent;    				
+	/*display: none;*/
+	visibility: hidden;
+	position: absolute;
+    top: 32px;      
+    width: 570px;
+	padding:0 0 0 20px;
+	padding-bottom:35px;
+}
+
+.trayContent .columnLeft {
+	float: left;	
+	width: auto;
+}
+
+.trayContent .columnRight {
+	float: right;
+	width: auto;	
+	/*padding-left:20px;*/
+	padding-right:15px;
+}
+
+.trayContent .columnRight ul {
+	width: 350px;	
+	width: auto;
+}
+
+.secondaryMenu ul ul {
+	display: block;    
+    position: absolute;
+    padding-bottom: 35px;
+	padding-top: 10px;		
+}
+
+.secondaryMenu ul .columnLeft ul li {
+    clear: left;
+	width: 200px;	
+} 
+
+.secondaryMenu ul .columnRight ul li {
+	display: block;
+	width: 350px;		
+	height: 20px;
+}
+
+.secondaryMenu ul .columnLeft ul li a {
+	background: url("images/nav/dot-black.gif") no-repeat 20px 8px;
+}
+
+.secondaryMenu ul .columnLeft ul li.selected {	 
+	background: url("images/nav/selected-tray-item.png") no-repeat scroll 263px top #EBEBEB;
+}
+
+.secondaryMenu ul .columnLeft ul li.selected a {
+	background: url("images/nav/dot-red.gif") no-repeat 20px 8px;
+}
+
+.secondaryMenu ul .columnRight ul li a {
+	color: #646464;
+	font-weight: normal;
+	padding-left: 10px;
+}
+
+.secondaryMenu ul ul ul {
+    position: absolute;
+	top: 0;
+	display: block;
+	left: 0;    
+	padding-bottom: 40px;
+	background: url("images/nav/tray-bg-right.png") no-repeat scroll 0 bottom transparent;    			
+}
+
+.secondaryMenu > ul li {
+    float: left;
+	position: relative;
+}
+
+.secondaryMenu ul li > a {
+    margin-left: 21px;
+	margin-right: 10px;
+	padding: 11px 15px 2px 19px;	
+    height: 20px;
+	font-weight: bold;
+	color: #333333;
+	line-height: 12px;
+	font-size: 12px;
+	text-decoration: none;
+	float: left;
+	background: url("images/nav/arrow-secNav.gif") no-repeat scroll right 16px transparent;    		
+}
+
+.secondaryMenu ul ul li > a {
+	background: none;
+	padding: 0 0 0 29px;
+	margin: 0;
+	line-height: 20px;
+
+}
+
+.secondaryMenu ul ul li.selected > a {
+	color: #d90000;	
+}
+
+/* Form Search */
+
+form.search {
+	float: right;
+	margin-right: 10px;
+	margin-top: 6px;	
+}
+
+form.search input[type='text']{
+	background: url("images/nav/globalNav-sprite.png") no-repeat scroll -152px -62px transparent; 
+	width: 157px;
+	border: none;	
+	height: 18px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #8f8f8f;
+	padding-left: 10px;
+	padding-bottom: 2px;
+	float: left;
+}
+
+form.search input {
+	background: url("images/nav/globalNav-sprite.png") no-repeat scroll -319px -62px transparent; 
+	width: 31px;
+	border: none;	
+	height: 20px;
+	float: left;
+}
+

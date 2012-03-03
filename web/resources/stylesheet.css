@@ -1,0 +1,117 @@
+/*
+ * After modifying this style sheet, refresh the page being designed to see the effect of the modification.
+ * Click the Refresh button in the Visual Designer toolbar to refresh the page.
+ */
+
+/* Style rules to make Java Server faces Standarad data tables look better */
+
+.list-header {
+  background-color: #eeeeee;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.list-paging-header {
+  background-color: white;
+}
+
+.list-paging-footer {
+  background-color: white;
+}
+
+.list-row-even {
+}
+
+.list-row-odd {
+  background-color: #eeeeee;
+}
+
+/* Style rules for message severity levels */
+
+.infoMessage {
+  color: black;
+}
+
+.warnMessage {
+  color: orange;
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+}
+
+.fatalMessage {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/*
+----------- message ----------
+*/
+.iceMsg {
+
+}
+
+.iceMsgFatal {
+
+}
+
+.iceMsgError {
+ font-size:11px;
+ color: #FF0000;
+ width:300px;
+}
+
+.errorMessage {
+
+}
+.iceMsgWarn {
+
+}
+
+.iceMsgInfo {
+
+}
+
+/*
+----------- Nuevos selectores --------
+*/
+
+.iceOutTxtTituloCabecera {
+ color: #003399;
+ font-size: 24px;
+}
+
+.iceInpTxtNumeros {
+ border: 1px solid #ABABAB;
+ background-color: #FFFFFF;
+ margin: 2px;
+ padding: 2px;
+ text-align: right;
+ width: 80px
+}
+
+.iceOutLblNegrita {
+ color: #000000;
+ padding-left: 0px;
+ padding-right: 0px;
+ padding-top: 2px;
+ padding-bottom: 2px;
+ font-weight: bold;
+}
+
+.iceOutLblNumerosTotales {
+ border: 1px solid #ABABAB;
+ background-color:#FAE7AD;
+ color: #003399;
+ margin: 2px;
+ padding: 2px;
+ text-align: right;
+ width: 74px;
+ height: 17px;
+ font-weight: bold;
+}
+

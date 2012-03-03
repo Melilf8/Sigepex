@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : frm_listar_estudiantes
+    Created on : Nov 8, 2011, 1:20:37 PM
+    Author     : Luis Granados
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+  <html>
+  <head>
+      <title>frm_listar_estudiantes</title>
+      <img src="/Sigepex/imagenes/barraencabezado.jpg" class="img"/>
+      <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+      <ice:outputStyle href="/css2/menu.css" id="outputStyle2"/>
+      <script type="text/javascript" src="/scripts/jquery.js"></script>
+      <script type="text/javascript" src="/scripts/menu.js"></script>
+      <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+        <script language="JavaScript1.1">
+            function doPopup(source){
+            // popup = window.open("frm_listar_estudiantes2.jspx", "popup", "height=600,width=800,toolbar=no,menubar=no,status=no,scrollbars=yes,resizable=yes")
+            popup =
+                window.open("frm_listar_estudiantes2.jspx", "popup", "left=150,top=150,height=600,width=800,toolbar=0,menubar=0,status=1,scrollbars=0,resizable=0");
+            //window.open("frm_listar_estudiantes2.jspx", "popup", "dialogWidth:800px;dialogHeight:600px;help:no;maxi mize:no;minimize:no;scrollbars:no;status:off;menub ar=no;unadorned=on;titlebar=0;", "RENUNCIA")
+            popup.focus();
+            }
+        </script>
+  </head>
+  <body>
+      <!-- BOTONES -->
+      <ice:commandButton styleClass="formatorojo" value="Mostrar Popup" action="#{estudianteBean.MostrarPopup}"></ice:commandButton>
+      <ice:commandButton styleClass="formatorojo" value="mostrar" onclick="doPopup(this); return false;"/>
+    
+         <!-- Para mostrar el popup la propiedad visible=true", para que no se muestre debe estar en false -->
+         <ice:panelPopup modal="false"
+                   style="z-index: 1000; top: 50%; left: 50%; position: absolute; width: 300px;"
+                   draggable="true"
+                   visible="#{estudianteBean.verPopup}"
+                   autoCentre="false">
+             <ice:form>
+            <f:facet name="header">
+                <!--Contenido de la Cabecera-->
+                <ice:panelGrid width="100%" cellpadding="0" cellspacing="0" columns="2"
+                bgcolor="#e1e1e1" style="text-align: left;">
+                <ice:outputText style="color: black;" value="Listado de Estudiantes"/>
+                <p align="right">
+                    <ice:commandButton action="#{estudianteBean.CerrarPopup}" title="Cerrar" image="/Sigepex/imagenes/close.gif"/>
+                </p>
+                </ice:panelGrid>
+            </f:facet>
+
+            <f:facet name="body">
+                <!--Contenido del Cuerpo-->
+              <ice:panelGrid width="100%" cellpadding="0" cellspacing="0" columns="2">
+                        <table width="1000" border="0" cellspacing="0" align="center">
+                        <tr><td colspan ="7" align="center">
+                            <img src="/Sigepex/imagenes/barralistado_estudiantes.jpg" align="center" heigh="10"  width="1000"/>
+                        </td></tr>
+                        <tr>
+                            <td colspan ="7" align="left">
+                                <ice:commandButton styleClass="formatorojo" value="Cerrar" action="cerrar"></ice:commandButton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" align="center">
+                                <ice:outputText styleClass="labelMensajeError" value="#{estudianteBean.msg}"></ice:outputText>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                     <ice:dataTable id="data" styleClass="scrollerTable" headerClass="standardTable_Header"
+                                  footerClass="standardTable_Header"
+                                  columnClasses="columna_abajoderecha,columna_abajoderecha,columna_abajo"
+                                  value="#{estudianteBean.list_ins_estudiantes}" var="item">
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value=" " /></f:facet>
+                            <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Identificación" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.identificacion}"/>
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Nombre" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.nombre}" />
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Apellido1" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.apellido1}" />
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Apellido2" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.apellido2}"/>
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Carnet" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.carnet}"></ice:outputText>
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Tipo" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.tipo}" />
+                        </ice:column>
+                        <ice:column>
+                            <f:facet name="header"><ice:outputText value="Sede" /></f:facet>
+                            <ice:outputText styleClass="datagrid" value="#{item.sede}" />
+                        </ice:column>
+                 </ice:dataTable>
+              </ice:panelGrid>
+            </f:facet>
+            </ice:form>
+         </ice:panelPopup>
+     
+</body>
+  </html>
+</f:view>

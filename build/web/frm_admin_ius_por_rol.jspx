@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : frm_admin_ius_por_rol
+    Created on : Nov 22, 2011, 7:17:56 PM
+    Author     : Luis Granados
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+  <html>
+      <head>
+        <title>Admin IUs por Rol</title>
+        <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+        <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+      </head>
+      <body>
+         <!-- OPEN POPUP -->
+         <ice:form>
+              <table align="center" cellpadding="0" cellspacing="0" width="1200">
+                  <tr>
+                    <td align="left" colspan="4" bgcolor="#E9E9E9">
+                        <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminIUsPorRol}"/>
+                    </td>
+                 </tr>
+              </table>
+         </ice:form>
+         <!-- POPUP MENSAJE DE AYUDA -->
+          <ice:form style="#{popup.estiloForm}">
+              <ice:panelPopup id="pnlPopup" draggable="true" visible="#{popup.visible}" style="#{popup.estiloPanelPopup}">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{popup.closePopup}" title="Cerrar Ayuda"/>
+                    </ice:panelGrid>
+                </f:facet>
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.texto}"/>
+                         <table align="center">
+                            <tr>
+                                <td>
+                                    <ice:commandButton id="btn_cerrar" styleClass="#{popup.estiloBotonCerrar}" value="Cerrar" action="#{popup.closePopup}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>       
+        <ice:form id="frm_admin_ius_por_rol">
+
+            <table class="table" align="center">                
+                 <tr>
+                    <td colspan="4" align="center">
+                        <img src="/Sigepex/imagenes/barraadmuisxrol.jpg" class="tamBarraIUs"/>
+                    </td>
+                 </tr>
+                 <tr><td colspan="4"></td></tr>
+                <tr>
+                    <td align="left" colspan="4" style="font-weight:bold;"><ice:outputLabel id="lbl_out_idRol" value="ROL DE USUARIO"/></td>
+                </tr>                
+                <tr>
+                     <!-- ROL -->
+                    <td colspan="4" id="cmb_rol" align="left" style="font-weight:bold;" tabindex="1">
+                        <ice:selectOneMenu value="#{iusxrolBean.ins_rolBean.idRol}"
+                        valueChangeListener="#{iusxrolBean.cmbRolBean_onChange}"
+                            partialSubmit="true" immediate="true">
+                            <f:selectItems value="#{iusxrolBean.ins_rolBean.list_ins_SelectItem_roles}" />
+                        </ice:selectOneMenu>
+                    </td>                    
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><img src="/Sigepex/imagenes/barracierre.jpg" class="tamBarraPie"/></td>
+                 </tr>
+                 <!-- MENSAJES -->
+                 <tr>
+                    <td colspan="4" align="center">
+                        <ice:outputText styleClass="labelMensajeError" value="#{iusxrolBean.ins_rolBean.msg}"></ice:outputText>
+                    </td>
+                </tr>
+                <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
+            </table>
+            <!-- LISTADO DE PANTALLAS -->
+            <center>
+            <ice:dataTable id="data" styleClass="scrollerTable" headerClass="standardTable_Header"
+                          footerClass="standardTable_Header"
+                          columnClasses="columna_abajoderecha,columna_abajoderecha,columna_abajo"
+                          value="#{iusxrolBean.list_ins_iusPorRolBean}" var="item">
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value=" " /></f:facet>
+                    <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="PANTALLAS" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.nombreIU}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value=" : " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText visible="false" value="ROL" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText visible="false" styleClass="datagrid" value="#{item.idRol}" />
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="ID INTERFACES DE USUARIO" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.idIU}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+         </ice:dataTable>
+         </center>
+         <table class="table" align="center">
+             <tr>
+                 <td colspan="4" align="center">
+                     <ice:commandButton id="btn_guardar" styleClass="labelNormal" value="Guardar Cambios" action="#{iusxrolBean.verificarChecks}"/>
+                 </td>
+             </tr>
+             <tr>
+                    <td colspan="4" align="center"><img src="/Sigepex/imagenes/barracierre.jpg" class="tamBarraPie"/></td>
+             </tr>
+             <!-- MENSAJES -->
+                 <tr>
+                    <td colspan="4" align="center">
+                        <ice:outputText styleClass="labelMensajeError" value="#{iusxrolBean.msg}"></ice:outputText>
+                    </td>
+                </tr>
+         </table>
+        </ice:form>
+      </body>
+  </html>
+</f:view>

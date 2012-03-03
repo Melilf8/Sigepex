@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : frm_inicio
+    Created on : Nov 24, 2011, 7:52:42 AM
+    Author     : Luis Granados
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+  <html>
+      <head>
+          <title>Inicio</title>
+          <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+            <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+      </head>
+      <body>
+         <!-- OPEN POPUP -->
+         <ice:form>
+          <table align="center" cellpadding="0" cellspacing="0" width="1200">
+              <tr>
+                <td align="left" colspan="4" bgcolor="#E9E9E9">
+                    <ice:commandButton style="margin-left:12px" styleClass="formatorojo" value="Información" action="#{popup.openPopup_InformacionSigepex}"/>
+                </td>
+             </tr>
+          </table>
+        </ice:form>
+          <!-- POPUP -->
+          <ice:form style="#{popup.estiloForm}">
+              <ice:panelPopup id="pnlPopup" draggable="true" visible="#{popup.visible}" style="#{popup.estiloPanelPopup}">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{popup.closePopup}" title="Cerrar Ayuda"/>
+                    </ice:panelGrid>
+                </f:facet>
+
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.texto}"/>
+                         <table align="center">
+                            <tr>
+                                <td>
+                                    <ice:commandButton id="btn_cerrar" styleClass="#{popup.estiloBotonCerrar}" value="Cerrar" action="#{popup.closePopup}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+
+        <ice:form id="frm_inicio">           
+            <table  style="margin-top:150px;"  cellspacing="0" cellpadding="0" align="center" width="855">
+                <tr>
+                    <td align="center" class="labelBienvenida">
+                        Sistema de Gestión y Préstamo de Expedientes Estudiantiles
+                    </td>
+                </tr>
+            </table>
+            <table align="center" cellpadding="0" cellspacing="0" width="1200">
+            <tr><td height="150"></td></tr>
+            <tr><td align="center" bgcolor="#E9E9E9" width="1200" height="20"></td></tr>
+         </table>        
+        </ice:form>
+      </body>
+  </html>
+</f:view>

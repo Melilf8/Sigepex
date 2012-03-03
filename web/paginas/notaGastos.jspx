@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : notaGastos
+    Created on : Nov 2, 2011, 2:58:27 PM
+    Author     : estudiante
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+ <html>
+ <head>
+  <ice:outputStyle href="/resources/stylesheet.css" id="outputStyle1"/>
+  <title>ICEfaces: Nota de gastos</title>
+ </head>
+ <body>
+  <ice:form id="frmNotaGastos">
+   <ice:outputText id="txtNotaGastos"
+                    value="Nota de gastos"
+                    style="left: 30px; top: 20px; position: absolute"
+                    styleClass="iceOutTxtTituloCabecera"/>
+
+   <ice:outputLabel id="lblDietas"
+                    value="Dietas"
+                    style="left: 30px; top: 70px; position: absolute" />
+   <ice:inputText id="txfDietas"
+                  partialSubmit="true"
+                  style="left: 118px; top: 66px; position: absolute"
+                  styleClass="iceInpTxtNumeros"
+                  value="#{notaGastosBackBean.dietas}">
+    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="es" />
+   </ice:inputText>
+   <ice:outputLabel value="€"
+                    style="left: 204px; top: 70px; position: absolute"/>
+   <ice:message for="txfDietas"
+                style="left: 220px; top: 76px; position: absolute"/>
+
+   <ice:outputLabel id="lblTransporte"
+                    value="Transporte"
+                    style="left:30px; top: 100px; position: absolute"/>
+   <ice:inputText id="txfTransporte"
+                  partialSubmit="true"
+                  style="left: 118px; top: 96px; position: absolute"
+                  styleClass="iceInpTxtNumeros"
+                  value="#{notaGastosBackBean.transporte}">
+    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="es" />
+   </ice:inputText>
+   <ice:outputLabel value="€"
+                  style="left: 204px; top: 100px; position: absolute"/>
+   <ice:message for="txfTransporte"
+                style="left: 220px; top: 106px; position: absolute"/>
+
+   <ice:outputLabel id="lblTotalGastos"
+                  value="Total gastos"
+                  style="left:30px; top: 130px; position: absolute"
+                  styleClass="iceOutLblNegrita"/>
+   <ice:outputLabel id="lblValorTotalGastos"
+                  style="left: 118px; top: 126px; position: absolute"
+                  styleClass="iceOutLblNumerosTotales"
+                  value="#{notaGastosBackBean.totalGastos}">
+    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="es" />
+   </ice:outputLabel>
+   <ice:outputLabel value="€"
+                  style="left: 204px; top: 130px; position: absolute"/>
+  </ice:form>
+ </body>
+ </html>
+</f:view>

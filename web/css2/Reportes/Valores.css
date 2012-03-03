@@ -1,0 +1,55 @@
+﻿.icons
+{
+    margin-left:10px;
+    margin-right:10px;
+    
+    }
+    
+.icons_edit
+{
+     margin-left:10px;
+    margin-right:10px;
+    
+    }
+
+#lista ul
+{
+    padding-left:0px !important;
+  }
+
+#lista li
+{
+    
+    list-style-type: none;
+
+    width:280px;
+    overflow:auto !important;
+        margin: 0;
+        padding: 5px ;
+        border: 1px solid gray;
+    }
+
+.divLi
+{
+    float: left;
+    }
+
+.liText
+    {
+        float:left;
+        width: 200px;
+        }
+.btnIcons
+{
+    float:right;
+    }
+    
+.clear
+{
+    clear:both;
+    }
+
+.hide
+{
+    display:none;
+    }

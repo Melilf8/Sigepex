@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : frm_reporte_prestamo_estudiante
+    Created on : Nov 3, 2011, 6:32:23 PM
+    Author     : estudiante
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <html>
+        <head>
+            <title>Reporte Prestamo</title>
+            <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+            <ice:outputStyle href="/css2/menu.css" id="outputStyle2"/>
+            <script type="text/javascript" src="/Sigepex/scripts/menu.js"></script>
+
+            <!-- JQUERY -->
+            <script src="/Sigepex/scripts/jquery-1.3.2.min.js"></script>
+
+            <script type="text/javascript" src="/Sigepex/scripts/jqueryUI/jquery.tablesorter.js"></script>
+            <script type="text/javascript" src="/Sigepex/scripts/Reportes/prototype.js"></script>
+            <!-- JQUERY UI js's -->
+
+            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.core.js"></script>
+            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.widget.js"></script>
+            <script src="/Sigepex/scripts/jqueryUI/jquery.ui.datepicker.js"></script>
+            <!-- Style -->
+            <link rel="stylesheet" href="/Sigepex/css2/Reportes/style.css" type="text/css" />
+            <link rel="stylesheet" href="/Sigepex/css2/Reportes/jquery.ui.all.css" />
+            <link rel="stylesheet" href="/Sigepex/css2/Reportes/jquery.ui.datepicker.css"/>
+            <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+
+        </head>
+        <body>
+        <!-- OPEN POPUP -->
+         <ice:form>
+              <table align="center" cellpadding="0" cellspacing="0" width="1200">
+                  <tr>
+                    <td align="left" colspan="4" bgcolor="#E9E9E9">
+                        <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_ReportePrestamo}"/>
+                    </td>
+                 </tr>
+              </table>
+         </ice:form>
+         <!-- POPUP MENSAJE DE AYUDA -->
+       <ice:form style="#{popup.estiloForm}">
+              <ice:panelPopup id="pnlPopup" draggable="true" visible="#{popup.visible}" style="#{popup.estiloPanelPopup}">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{popup.closePopup}" title="Cerrar Ayuda"/>
+                    </ice:panelGrid>
+                </f:facet>
+
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.texto}"/>
+                         <table align="center">
+                            <tr>
+                                <td>
+                                    <ice:commandButton id="btn_cerrar" styleClass="#{popup.estiloBotonCerrar}" value="Cerrar" action="#{popup.closePopup}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+
+        <table align="center" cellpadding="0" cellspacing="0" width="855">
+    
+            <tr><td colspan="4"></td></tr>
+            <tr><td colspan="4"></td></tr>
+            <tr><td colspan="4"></td></tr>
+            <tr><td colspan="4"></td></tr>
+            <tr><td colspan="4"></td></tr>
+            <tr><td colspan="4"></td></tr>
+        </table>
+
+	    <ice:form >
+            <div id="container" class="centerDiv">
+                <h3>Reporte Préstamo de Expedientes</h3>
+                <div class="demo">
+                    <label for="from">Fecha Inicio</label>
+                    <input type="text" class="inputFrom"  id="from"  value=""></input>
+                    <label for="to">Fecha Final</label>
+                    <input type="text" class="inputTo"  id="to"  value=""></input>
+                    <ice:outputLabel value="Dependencia:" id="lbl_UndAc"/>
+                    <ice:selectOneMenu styleClass="inputCombo" id="dp_dependencia" value="#{reporte.dependencia}">
+                        <f:selectItem itemLabel="" itemValue="" />
+                        <f:selectItem itemLabel="Atencion a Estudiantes" itemValue="Atencion" />
+                        <f:selectItem itemLabel="Administracion de Expedientes" itemValue="adm" />
+                        <f:selectItem itemLabel="Expedientes Estudiantilies" itemValue="Expedientes" />
+                        <f:selectItem itemLabel="Soporte Documental" itemValue="Soporte" />
+                    </ice:selectOneMenu>
+                    <label for="txtUsuario">Funcionario</label>
+                    <h:inputText  id="txtUsuario" styleClass="inputFunc" value="#{reporte.funcionario}"/>
+                    <p>
+                        <input type="button" value="Crear Reporte" onclick="CrearReporte()"></input>
+                    </p>
+
+                </div><!-- End demo -->
+             
+            </div>
+            </ice:form>
+   </body>
+    </html>
+</f:view>

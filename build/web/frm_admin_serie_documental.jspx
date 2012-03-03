@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : frm_admin_serie_documental
+    Created on : Nov 23, 2011, 12:35:21 PM
+    Author     : Luis Granados
+-->
+<f:view xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+  <html>
+      <head>
+          <title>Admin Series Doc</title>
+          <ice:outputStyle href="/scripts/css_estilos.css" id="outputStyle1"/>
+          <script type="text/javascript" src="/scripts/js_funciones.js"></script>
+          <link href="./xmlhttp/css/xp/xp.css" rel="stylesheet" type="text/css" />
+            <!--
+             <script type="text/javascript">
+                 $(document).ready(function(){
+                   $("#enlace1").click(function(){
+                       $("#listaSeriesDoc").css("display", "none");
+                   });
+                   $("#enlace2").click(function(){
+                       $("#listaSeriesDoc").css("display","block");
+                   });
+                });
+             </script>
+            -->
+      </head>
+      <body>
+        <!-- OPEN POPUP -->
+         <ice:form>
+              <table align="center" cellpadding="0" cellspacing="0" width="1200">
+                  <tr>
+                    <td align="left" colspan="4" bgcolor="#E9E9E9">
+                        <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_AdminSerieDocumental}"/>
+                    </td>
+                 </tr>
+              </table>
+         </ice:form>
+         <!-- POPUP MENSAJE DE AYUDA -->
+          <ice:form style="#{popup.estiloForm}">
+              <ice:panelPopup id="pnlPopup" draggable="true" visible="#{popup.visible}" style="#{popup.estiloPanelPopup}">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{popup.closePopup}" title="Cerrar Ayuda"/>
+                    </ice:panelGrid>
+                </f:facet>
+
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.texto}"/>
+                         <table align="center">
+                            <tr>
+                                <td>
+                                    <ice:commandButton id="btn_cerrar" styleClass="#{popup.estiloBotonCerrar}" value="Cerrar" action="#{popup.closePopup}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+
+        <ice:form id="frm_admin_serie_documental">
+
+            <table class="table" align="center">
+                 <tr>
+                    <td colspan="4" align="center">
+                        <img src="/Sigepex/imagenes/barraadmseriesdocumentales.jpg" class="tamBarraIUs"/>
+                    </td>
+                 </tr>                 
+                <tr>
+                    <td></td>
+                    <td align="left" style="font-weight:bold;">
+                        <ice:outputLabel id="lbl_idSerieDocumental" value="ID SERIE" styleClass="cursivaPeq"/>
+                    </td>
+                    <td align="left" colspan="2" style="font-weight:bold;"><ice:outputLabel id="lbl_tipo" value="TIPO DOCUMENTAL" styleClass="cursivaPeq"/></td>
+                </tr>
+                <tr>
+                    <td style="width: 190px;"></td>
+                     <td align="left">
+                         <ice:inputText id="txt_in_idSerieDoc"  styleClass="textBoxPeq" value="#{serieDocBean.idSerieDocumental}" maxlength="10" tabindex="1"/>
+                     </td>
+                     <td>
+                         <ice:inputText id="txt_in_nombre"  styleClass="textBox1" value="#{serieDocBean.tipoDocumental}" maxlength="45" tabindex="2"
+                                  onkeypress="return(validaLetras(event))">
+                        </ice:inputText>
+                    </td>
+                    <td>
+                         <ice:commandButton id="btn_registrar" styleClass="labelNormal" value="Registrar" action="#{serieDocBean.registrarSerieDoc}"/>
+                        <ice:commandButton id="btn_actualizar" styleClass="labelNormal" value="Actualizar" action="#{serieDocBean.actualizarSerieDoc}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center"><img src="/Sigepex/imagenes/barracierre.jpg" class="tamBarraPie"/></td>
+                 </tr>
+                 <!-- MENSAJES -->
+                 <tr>
+                    <td colspan="4" align="center">
+                        <ice:outputText styleClass="labelMensajeError" value="#{serieDocBean.msg}"></ice:outputText>
+                    </td>
+                </tr>
+                <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>
+            </table>
+
+            <span id="listaSeriesDoc">
+            <center>
+                <!-- con la variable rows podemos limitar el número de filas a mostrar en la página -->
+            <ice:dataTable id="TablaSeriesDoc" rows="5"
+                          styleClass="scrollerTable" headerClass="standardTable_Header"
+                          footerClass="standardTable_Header"
+                          columnClasses="columna_abajoderecha,columna_abajoderecha,columna_abajo"
+                          value="#{serieDocBean.list_ins_SerieDocBean}" var="item">
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value=" " /></f:facet>
+                    <ice:selectBooleanCheckbox styleClass="datagrid" value="#{item.checked}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="ID SERIE" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.idSerieDocumental}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="TIPO DOCUMENTAL" styleClass="alignIzq" /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="#{item.tipoDocumental}"/>
+                </ice:column>
+                <ice:column>
+                    <f:facet name="header"><ice:outputText value="  " /></f:facet>
+                    <ice:outputText styleClass="datagrid" value="  "/>
+                </ice:column>
+         </ice:dataTable>
+
+         <!-- PAGINADOR
+                paginatorMaxPages: nos permitirá definir el número de páginas a mostrar en primera instancia.
+                for: nos referencia el id del dataTable
+                paginator=true: nos asegurará mostrar los controles para el paginado de datos.
+         -->
+         <ice:dataPaginator id="data_scroll" for="TablaSeriesDoc" paginator="true" fastStep="3" paginatorMaxPages="5">
+             <f:facet name="first">
+                <ice:graphicImage
+                    url="./xmlhttp/css/xp/css-images/arrow-first.gif"
+                    style="border:none;"
+                    title="Primera Página"/>
+            </f:facet>
+            <f:facet name="last">
+                <ice:graphicImage
+                    url="./xmlhttp/css/xp/css-images/arrow-last.gif"
+                    style="border:none;"
+                    title="Última Página"/>
+            </f:facet>
+            <f:facet name="previous">
+            <ice:graphicImage
+            url="./xmlhttp/css/xp/css-images/arrow-previous.gif"
+            style="border:none;"
+            title="Página Previa"/>
+            </f:facet>
+            <f:facet name="next">
+            <ice:graphicImage
+            url="./xmlhttp/css/xp/css-images/arrow-next.gif"
+            style="border:none;"
+            title="Siguiente Página"/>
+            </f:facet>
+            <f:facet name="fastforward">
+            <ice:graphicImage url="./xmlhttp/css/xp/css-images/arrow-ff.gif"
+                          style="border:none;"
+                          title="Avance Rápido"/>
+            </f:facet>
+            <f:facet name="fastrewind">
+            <ice:graphicImage url="./xmlhttp/css/xp/css-images/arrow-fr.gif"
+                          style="border:none;"
+                          title="Retroceso Rápido"/>
+            </f:facet>
+        </ice:dataPaginator>
+         </center>
+
+         <table class="table" align="center">
+             <tr>
+                 <td colspan="4" align="center">
+                     <ice:commandButton id="btn_eliminar" styleClass="formatorojo" value="Eliminar" action="#{serieDocBean.eliminarSerieDoc}"/>
+                 </td>
+             </tr>
+         </table>
+         </span>
+         <table class="table" align="center">
+             <tr>
+                    <td colspan="4" align="center"><img src="/Sigepex/imagenes/barracierre.jpg" class="tamBarraPie"/></td>
+             </tr>
+         </table>
+        </ice:form>
+      </body>
+  </html>
+</f:view>

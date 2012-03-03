@@ -1,0 +1,439 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">   
+    <application>
+      <message-bundle>literales.ErroresBundle</message-bundle>
+      <locale-config>
+       <default-locale>es</default-locale>
+       </locale-config>
+   </application>
+   <managed-bean>
+        <managed-bean-name>NotaGastosBackBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.backbeans.NotaGastosBackBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <!-- ================================================================== -->
+    <!-- ==================+=== SESIONES BEAN ============================= -->
+    <!-- ================================================================== -->
+         <managed-bean>
+         <description>Used to initiate server side renders</description>
+         <managed-bean-name>renderManager</managed-bean-name>
+         <managed-bean-class>
+             com.icesoft.faces.async.render.RenderManager
+         </managed-bean-class>
+         <managed-bean-scope>application</managed-bean-scope>
+     </managed-bean>
+
+     <managed-bean>
+         <description>Controller class, takes renderManager as parameter.</description>
+         <managed-bean-name>clientController</managed-bean-name>
+         <managed-bean-class>
+             com.icesoft.icefaces.samples.security.ClientController
+         </managed-bean-class>
+         <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+             <property-name>renderManager</property-name>
+             <value>#{renderManager}</value>
+         </managed-property>
+     </managed-bean>
+    <!-- ================== MENSAJE AYUDA BEAN ============================ -->
+    <managed-bean>
+        <description>Bean de Serie Documental</description>
+        <managed-bean-name>msgAyudaBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.MensajeAyudaBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ================ SERIE DOCUMENTAL BEAN =========================== -->
+    <managed-bean>
+        <description>Bean de Serie Documental</description>
+        <managed-bean-name>serieDocBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.SerieDocumentalBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ===================== PARAMETRO BEAN ============================= -->
+    <managed-bean>
+        <description>Bean de Parametro</description>
+        <managed-bean-name>parametroBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.ParametroBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ======================== ROL BEAN ================================ -->
+    <managed-bean>
+        <description>Bean de Rol</description>
+        <managed-bean-name>rolBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.RolBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ======================= IUS X ROL BEAN =============================== -->
+    <managed-bean>
+        <description>Bean de UIs por Rol</description>
+        <managed-bean-name>iusxrolBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.IUsPorRolBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ======================= POPUP BEAN =============================== -->
+    <managed-bean>
+        <description>Bean de Popup</description>
+        <managed-bean-name>popup</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.PopupBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ==================== AYUDA_IU_BEAN =============================== -->
+    <managed-bean>
+        <description>Bean de ayudaIU</description>
+        <managed-bean-name>ayudaIUBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.AyudaIUBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ==================== LOGIN_BEAN ================================== -->
+    <managed-bean>
+        <description>Bean de login</description>
+        <managed-bean-name>sessionLoginBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.LoginBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ==================== SERVICIO_BEAN =============================== -->
+    <managed-bean>
+        <managed-bean-name>service</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.Servicio</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ================== FUNCIONARIO_BEAN ============================== -->
+    <managed-bean>
+        <description>Bean de funcionario</description>
+        <managed-bean-name>funcionarioBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.FuncionarioBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ================= ESTUDIANTE_BEAN ================================ -->
+    <managed-bean>
+        <description>Bean de estudiante</description>
+        <managed-bean-name>estudianteBean</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.bl.EstudianteBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <!-- ==================== DB BEAN ===================================== -->
+    <managed-bean>
+        <description>Bean de bd</description>
+        <managed-bean-name>estudianteDao</managed-bean-name>
+        <managed-bean-class>cr.ac.una.reg.info.dal.EstudianteDao</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	<!-- ================= REPORTE PRESTAMO  BEAN ===================================== -->
+     <managed-bean>
+   <managed-bean-name>reporte</managed-bean-name>
+      <managed-bean-class>cr.ac.una.reg.info.bl.ReporteExpedienteBean</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+   </managed-bean>
+
+  
+
+     <!-- ================= REPORTE REMISION  BEAN ===================================== -->
+     <managed-bean>
+   <managed-bean-name>reporteRemision</managed-bean-name>
+      <managed-bean-class>cr.ac.una.reg.info.bl.ReporteRemisionBean</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+   </managed-bean>
+    <!-- ================================================================== -->
+    <!-- ================= NAVEGACION ===================================== -->
+    <!-- ================================================================== -->
+    <!-- ==================== LOGIN ======================================= -->
+    <navigation-rule>
+        <description>ESTOY EN EL LOGIN</description>
+        <from-view-id>/frm_login.jspx</from-view-id>
+        <navigation-case>
+            <from-action>#{sessionLoginBean.verificarAutentificacion}</from-action>
+            <from-outcome>autenticado</from-outcome>            
+            <to-view-id>/frm_master_page.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{sessionLoginBean.verificarAutentificacion}</from-action>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ======================= MASTER PAGE ===============================-->
+    <navigation-rule>
+        <description>ESTOY EN EL MASTER PAGE</description>
+        <from-view-id>/frm_master_page.jspx</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+    <!-- =========== ADMINISTRACION DE USUARIOS =========================== -->
+    <navigation-rule>
+    <description>ESTOY EN LA ADMINISTRACION DE USUARIOS</description>
+        <from-view-id>/frm_mantenimiento_usuarios.jspx</from-view-id>
+
+        <navigation-case>
+            <from-action>#{funcionarioBean.registrarFuncionario}</from-action>
+            <from-outcome>faltandatos</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{funcionarioBean.registrarFuncionario}</from-action>
+            <from-outcome>yaexiste</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{funcionarioBean.registrarFuncionario}</from-action>
+            <from-outcome>noestaregistrado</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{funcionarioBean.registrarFuncionario}</from-action>
+            <from-outcome>registrado</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>noexiste</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>actualizado</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+        <!--
+        <navigation-case>
+            <from-outcome>suspendido</from-outcome>
+            <to-view-id>/frm_mantenimiento_usuarios.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{funcionarioBean.Regresar}</from-action>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+        -->
+    </navigation-rule>
+    <!-- ================ SOLICITAR PRESTAMO ============================== -->
+    <navigation-rule>
+        <description>ESTOY EN SOLICITAR PRESTAMO</description>
+        <from-view-id>/frm_solicitar_prestamo.jspx</from-view-id>
+
+        <navigation-case>
+            <from-action>#{estudianteBean.listarEstudiantesCoincidencias}</from-action>
+            <from-outcome>coincidencias</from-outcome>
+            <to-view-id>/frm_listar_estudiantes2.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>        
+     </navigation-rule>
+    <!-- ================ LISTAR ESTUDIANTES ============================== -->
+    <navigation-rule>
+        <description>ESTOY EN LISTAR ESTUDIANTES</description>
+        <from-view-id>/frm_listar_estudiantes.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>cerrar</from-outcome>
+            <to-view-id>/frm_listar_estudiantes.jspx</to-view-id>
+        </navigation-case>
+
+         <navigation-case>
+            <from-action>#{estudianteBean.MostrarPopup}</from-action>
+            <from-outcome>mostrarpopup</from-outcome>
+            <to-view-id>/frm_listar_estudiantes.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{estudianteBean.CerrarPopup}</from-action>
+            <from-outcome>cerrarpopup</from-outcome>
+            <to-view-id>/frm_listar_estudiantes.jspx</to-view-id>
+        </navigation-case>
+     </navigation-rule>
+    <!-- ================ LISTAR ESTUDIANTES2 ============================== -->
+    <navigation-rule>
+        <description>ESTOY EN LISTAR ESTUDIANTES_2</description>
+        <from-view-id>/frm_listar_estudiantes2.jspx</from-view-id>
+
+        <navigation-case>
+            <from-action>#{estudianteBean.verificarChecks}</from-action>
+            <from-outcome>ningunamarcada</from-outcome>
+            <to-view-id>/frm_listar_estudiantes2.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-action>#{estudianteBean.verificarChecks}</from-action>
+            <from-outcome>masdeunamarcada</from-outcome>
+            <to-view-id>/frm_listar_estudiantes2.jspx</to-view-id>
+        </navigation-case>
+
+         <navigation-case>
+            <from-action>#{estudianteBean.verificarChecks}</from-action>
+            <from-outcome>unamarcada</from-outcome>
+            <to-view-id>/frm_solicitar_prestamo.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>cerrar</from-outcome>
+            <to-view-id>/frm_solicitar_prestamo.jspx</to-view-id>
+        </navigation-case>
+     </navigation-rule>
+    <!-- ================ APROBAR PRESTAMO =================================-->
+    <navigation-rule>
+        <description>ESTOY EN APROBAR PRESTAMO</description>
+        <from-view-id>/frm_aprobar_prestamo.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+    <!-- ================ APROBAR REMISION =================================-->
+    <navigation-rule>
+        <description>ESTOY EN APROBAR REMISION</description>
+        <from-view-id>/frm_aprobar_remision.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+    <!-- ================ CONSULTAR PRESTAMO ===============================-->
+    <navigation-rule>
+        <description>ESTOY EN CONSULTAR PRESTAMO</description>
+        <from-view-id>/frm_consultar_prestamo.jspx</from-view-id>
+
+		<navigation-case>
+        <from-outcome>Buscar</from-outcome>
+        <to-view-id>/frm_reporte_prestamo.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>   
+    <!-- ================ CONSULTAR REMISION ===============================-->
+    <navigation-rule>
+        <description>ESTOY EN CONSULTAR REMISION</description>
+        <from-view-id>/frm_consultar_remision.jspx</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
+    <!-- ================ LLENAR REMISION ==================================-->
+    <navigation-rule>
+        <description>ESTOY EN LLENAR REMISION</description>
+        <from-view-id>/frm_llenar_remision.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ==================== PARAMETROS ==================================-->
+    <navigation-rule>
+        <description>ESTOY EN PARAMETROS</description>
+        <from-view-id>/frm_parametros.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ================= REPORTE PRESTAMO ================================-->
+    <navigation-rule>
+        <description>ESTOY EN REPORTE PRESTAMO</description>
+        <from-view-id>/frm_reporte_prestamo.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ================= REPORTE REMISION ================================-->
+    <navigation-rule>
+        <description>ESTOY EN REPORTE REMISION</description>
+        <from-view-id>/frm_reporte_remision.jspx</from-view-id>
+
+		<navigation-case>
+        <from-outcome>Buscar</from-outcome>
+        <to-view-id>/frm_reporte_remision.jspx</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ==================== ADMIN ROLES ==================================-->
+    <navigation-rule>
+        <description>ESTOY EN ROLES</description>
+        <from-view-id>/frm_admin_roles.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ==================== ADMIN IUs POR ROL =============================-->
+    <navigation-rule>
+        <description>ESTOY EN ADMIN IUs POR ROL</description>
+        <from-view-id>/frm_admin_ius_por_rol.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- =============== ADMIN SERIES DOCUMENTALES =========================-->
+    <navigation-rule>
+        <description>ESTOY EN ADMIN SERIES DOCUMENTALES</description>
+        <from-view-id>/frm_admin_serie_documental.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- =============== ADMIN MENSAJES AYUDA =========================-->
+    <navigation-rule>
+        <description>ESTOY EN ADMIN MENSAJES AYUDA</description>
+        <from-view-id>/frm_admin_mensajes_ayuda.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!-- ================== PANTALLA DE INICIO =========================-->
+    <navigation-rule>
+        <description>ESTOY EN PANTALLA DE INICIO</description>
+        <from-view-id>/frm_inicio.jspx</from-view-id>
+
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/frm_login.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+</faces-config>

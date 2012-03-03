@@ -1,0 +1,141 @@
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e78f08;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(/Sigepex/css2/Reportes/images/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	color:white;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(/Sigepex/css2/Reportes/images/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/Sigepex/css2/Reportes/images/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+.centerDiv
+{
+    margin-left: 20%;
+    margin-right: 14%;
+    height:500px;
+}
+H3
+{
+	    color: gray;
+    font-family: Arial;
+    font-style: normal;
+	padding: 5px;
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.ui-widget-content {
+    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #FFFFFF;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+}
+
+.ui-widget {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 1.1em;
+}
+
+.ui-datepicker {
+    display: none;
+    padding: 0.2em 0.2em 0;
+    width: 17em;
+}
+
+.clearBoth
+{
+	clear:both;
+}
+.txtUser{
+	width: 166px;
+}
+.btnBuscar
+{
+	margin-right: 10px;
+	margin-top: 10px;
+	text-align: right;
+}
+
+div#menu {
+    margin: 51px auto;
+    width: 100%;
+}
+th {
+    font-family: Geneva,Arial,Helvetica,sans-serif;
+    text-align: left !important;
+}
+
+.inputFrom
+{
+
+}
+
+.inputTo
+{
+
+}
+
+.inputUnidad
+{
+
+}
+.inputFunc
+{
+
+}
+.inputBuscar
+{
+}
+
+.tableSpace{
+
+}
+
+.inputCombo
+{
+
+}
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+    background-image: url("/Sigepex/css2/Reportes/images/bg.gif");
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: white;
+    cursor: pointer;
+}
