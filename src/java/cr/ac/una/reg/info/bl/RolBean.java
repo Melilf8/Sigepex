@@ -45,7 +45,16 @@ public class RolBean {
     public void setDescripcionRol(String descripcionRol) { this.descripcionRol = descripcionRol; }
 
     public int getIdRol() { return idRol; }
-    public void setIdRol(int idRol) { this.idRol = idRol; }
+    public void setIdRol(int idRol) {
+        if(new ToolBean().ValidarEsNumero(Integer.toString(idRol)))
+        {
+            this.idRol = idRol;
+        }
+        else
+        {
+            this.setMsg("El ID del Rol debe ser un valor numérico.");
+        }
+    }
 
     public String getNombreRol() { return nombreRol; }
     public void setNombreRol(String nombreRol) { this.nombreRol = nombreRol; }
@@ -197,19 +206,40 @@ public class RolBean {
         }
         else
         {
-            Servicio.rolAgregar(this);
-            //this.list_ins_RolBeanAdd(this);// <== para el PROTOTIPO
-            Servicio.rolListarTodos(this);
+            if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdRol())))
+            {
+                if(!new ToolBean().ValidarEsPalabra(this.getNombreRol()))
+                {
+                    this.setMsg("El nombre del rol debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getDescripcionRol()))
+                {
+                    this.setMsg("La descripción del rol debe contener únicamente letras.");
+                    return "";
+                }
+                else
+                {
+                    Servicio.rolAgregar(this);
+                    //this.list_ins_RolBeanAdd(this);// <== para el PROTOTIPO
+                    Servicio.rolListarTodos(this);
 
 
-            if(this.getIdRol() == 0)
-                return "noestaregistrado";
+                    if(this.getIdRol() == 0)
+                        return "noestaregistrado";
+                    else
+                    {
+                        if(this.getMsg().equals("El rol ya está registrado en el sistema."))
+                            return "yaexiste";
+                        else
+                            return "registrado";
+                    }
+                }
+            }
             else
             {
-                if(this.getMsg().equals("El rol ya está registrado en el sistema."))
-                    return "yaexiste";
-                else
-                    return "registrado";
+                this.setMsg("El ID del Rol debe ser un valor numérico.");
+                return "";
             }
         }
     }
@@ -248,14 +278,35 @@ public class RolBean {
         }
         else
         {
-            Servicio.rolModificar(this);
-            //this.list_ins_RolBeanUpdate(this);// <== para el PROTOTIPO
-            Servicio.rolListarTodos(this);
+            if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdRol())))
+            {
+                if(!new ToolBean().ValidarEsPalabra(this.getNombreRol()))
+                {
+                    this.setMsg("El nombre del rol debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getDescripcionRol()))
+                {
+                    this.setMsg("La descripción del rol debe contener únicamente letras.");
+                    return "";
+                }
+                else
+                {
+                    Servicio.rolModificar(this);
+                    //this.list_ins_RolBeanUpdate(this);// <== para el PROTOTIPO
+                    Servicio.rolListarTodos(this);
 
-            if(this.getIdRol() == 0)
-                return "noexiste";
+                    if(this.getIdRol() == 0)
+                        return "noexiste";
+                    else
+                        return "actualizado";
+                }
+            }
             else
-                return "actualizado";
+            {
+                this.setMsg("El ID del Rol debe ser un valor numérico.");
+                return "";
+            }
         }
     }
 
@@ -270,13 +321,21 @@ public class RolBean {
         }
         else
         {
-            Servicio.rolEliminar(this);
-            Servicio.rolListarTodos(this);
+            if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdRol())))
+            {
+                Servicio.rolEliminar(this);
+                Servicio.rolListarTodos(this);
 
-            if(this.getIdRol() == 0)
-                return "noexiste";
+                if(this.getIdRol() == 0)
+                    return "noexiste";
+                else
+                    return "eliminado";
+            }
             else
-                return "eliminado";
+            {
+                this.setMsg("El ID del Rol debe ser un valor numérico.");
+                return "";
+            }
         }
     }
 

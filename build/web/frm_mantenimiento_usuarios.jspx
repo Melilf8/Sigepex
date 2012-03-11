@@ -73,7 +73,59 @@
                     </f:facet>
                 </ice:panelPopup>
             </ice:form>
-         
+            <!-- POPUP SALVAR DATOS -->
+            <ice:form style="#{popup.estiloForm}">
+              <ice:panelPopup id="headerPopup" draggable="true" visible="#{funcionarioBean.mostrarPopup}" style="z-index: 1000; top: 20%; left: 40%; position: absolute; width: 250px; height: 100px;">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{funcionarioBean.RechazarSalvar}" title="Cerrar Ayuda"/>
+                    </ice:panelGrid>
+                </f:facet>
+
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.mensajeSalvarDatos}"/>
+                         <table align="center">
+                            <tr>
+                                <tr><td></td></tr>
+                                <td>
+                                    <ice:commandButton id="btn_aceptar" styleClass="#{popup.estiloBotonCerrar}" value="Aceptar" action="#{funcionarioBean.AceptarSalvar}"/>
+                                        <ice:commandButton id="btn_rechazar" styleClass="#{popup.estiloBotonCerrar}" value="Rechazar" action="#{funcionarioBean.RechazarSalvar}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+        <!-- POPUP ACTUALIZAR DATOS -->
+            <ice:form style="#{popup.estiloForm}">
+                <ice:panelPopup id="headerPopupUpdate" draggable="true" visible="#{funcionarioBean.mostrarPopupActualizar}" style="z-index: 1000; top: 20%; left: 40%; position: absolute; width: 250px; height: 100px;">
+                <f:facet name="header">
+                    <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="#{popup.estiloPanelGrid}">
+                        <ice:outputText style="#{popup.estiloOutputText}" value="#{sessionLoginBean.nombre}"/>
+                        <ice:commandButton image="#{popup.urlImagenCerrar}" action="#{funcionarioBean.RechazarActualizar}" title="Cerrar"/>
+                    </ice:panelGrid>
+                </f:facet>
+
+                <f:facet name="body">
+                    <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
+                        <ice:outputText value="#{popup.mensajeActualizarDatos}"/>
+                         <table align="center">
+                            <tr>
+                                <tr><td></td></tr>
+                                <td>
+                                    <ice:commandButton id="btn_actualizar" styleClass="#{popup.estiloBotonCerrar}" value="Aceptar" action="#{funcionarioBean.AceptarActualizar}"/>
+                                    <ice:commandButton id="btn_noActualizar" styleClass="#{popup.estiloBotonCerrar}" value="Rechazar" action="#{funcionarioBean.RechazarActualizar}"/>
+                                </td>
+                            </tr>
+                         </table>
+                    </ice:panelGrid>
+                </f:facet>
+            </ice:panelPopup>
+        </ice:form>
+
             <ice:form id="frm_mantenimiento_usuarios">
                 <table class="table" align="center">
                     <tr>
@@ -85,17 +137,17 @@
                     <!-- CEDULA -->
                     <tr>
                         <td colspan="4" align="left" style="font-weight:bold;">
-                            <ice:outputLabel id="lbl_identificacion" value="Identificación" styleClass="cursivaPeq"/>
-                            <ice:outputText id="lbl_msgErrorID" style="color:red;" value="#{funcionarioBean.msgErrorID}"></ice:outputText>
+                            <ice:outputLabel id="lbl_identificacion" value="Identificación" styleClass="cursivaPeq"/>                            
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="4">
                             <ice:inputText id="txt_in_identificacion"  styleClass="textBoxPeq" value="#{funcionarioBean.identificacion}" onclick="doPopup(this); return false;" maxlength="9" tabindex="1"/>
                             <ice:commandButton id="btn_consultar" styleClass="formatoazulclaro" value="Consultar" action="#{funcionarioBean.consultarFuncionario}" ></ice:commandButton>
+                            <ice:commandButton id="btn_limpiar" styleClass="formatoazulclaro" value="Limpiar Datos" action="#{funcionarioBean.inicializarPagina}" ></ice:commandButton>
                             <!-- onclick="doPopup(this); return false;" -->
+                            <ice:outputText id="lbl_msgErrorID" style="color:red;" value="#{funcionarioBean.msgErrorID}"></ice:outputText>
                         </td>
-                        <td colspan="2"></td>
                     </tr>
                     <tr>
                         <td align="left" style="font-weight:bold;"><ice:outputLabel id="lbl_nombre" value="Nombre" styleClass="cursivaPeq"/></td>
@@ -187,7 +239,7 @@
 
             <!-- POPUP FUNCIONARIOS -->
             <ice:form style="width: 35%;">
-              <ice:panelPopup id="pnlPopupFnc" draggable="true" visible="#{funcionarioBean.visible}" style="z-index: 1000; top: 10%; left: 10%; position: absolute; width: 200px; height: 150px;">
+              <ice:panelPopup id="pnlPopupFnc" draggable="true" visible="#{funcionarioBean.visible}" style="z-index: 1000; top: 10%; left: 35%; position: absolute; width: 200px; height: 150px;">
                 <f:facet name="header">
                     <ice:panelGrid styleClass="icePanelPopupHeader"  width="100%" cellpadding="0" cellspacing="0" columns="2" style="text-align: center;">
                         <ice:outputText style="color: #FFFFFF;" value="Listado de Funcionarios"/>
@@ -197,18 +249,13 @@
                 <f:facet name="body">
                     <ice:panelGrid styleClass="icePanelPopupBody" width="100%" cellpadding="0" cellspacing="0">
 						<!-- ** -->
-						<table width="800" border="0" cellspacing="0" align="center">
+						<table width="400" border="0" cellspacing="0" align="center">
 							<tr>
-                                <!--
-								<td colspan ="7" align="center">
-									<img src="/Sigepex/imagenes/barralistado_estudiantes.jpg" align="center" heigh="10"  width="700"/>
-								</td>
-                                -->
 								<ice:inputText id="txt_in_identificacion"  styleClass="textBoxPeq" value="#{funcionarioBean.identificacion}" style="visibility:hidden"/>
 							</tr>
 							<tr>
 								<td colspan="7" align="center">
-									<ice:outputText styleClass="labelMensajeError" value="#{funcionarioBean.msg}"/>
+									<ice:outputText styleClass="labelMensajeError" style="color:red;" value="#{funcionarioBean.msg}"/>
 								</td>
 							</tr>
 						</table>

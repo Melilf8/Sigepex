@@ -181,7 +181,7 @@ public class ReporteExpedienteBean {
             String ee = "";
         }
 
-
+        
 
         //Exporta el informe a PDF
         String destFileNamePdf = "C:\\reporte1.pdf";
@@ -194,7 +194,7 @@ public class ReporteExpedienteBean {
             if (con != null) {
                 con.close();
             }
-        } catch (SQLException e)
+        } catch (SQLException e) 
         {
 
 

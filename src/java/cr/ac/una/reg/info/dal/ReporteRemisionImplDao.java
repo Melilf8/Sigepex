@@ -4,27 +4,21 @@
  */
 
 package cr.ac.una.reg.info.dal;
-
-
-
-import java.util.Map;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.util.JRLoader;
 
+import java.util.Map;
 
 /**
  *
  * @author Melissa
  */
-public class ReporteImplDao extends Connection  {
-
-
-    ////Este método permite obtener el reporte correspondiente pasando los parámetros correspondientes
-	////al reporte.
-	public byte[] obtenerBytesForReporte(Map parametros, String path) {
+public class ReporteRemisionImplDao extends Connection {
+    public byte[] obtenerBytesForReporte(Map parametros, String path) {
 
         byte[] bytes = null;
         try {
+
             if( openConecction()) {
 
 
@@ -41,6 +35,3 @@ public class ReporteImplDao extends Connection  {
     }
 
 }
-
-
-

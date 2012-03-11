@@ -127,18 +127,8 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 	<!-- ================= REPORTE PRESTAMO  BEAN ===================================== -->
-     <managed-bean>
-   <managed-bean-name>reporte</managed-bean-name>
-      <managed-bean-class>cr.ac.una.reg.info.bl.ReporteExpedienteBean</managed-bean-class>
-      <managed-bean-scope>session</managed-bean-scope>
-   </managed-bean>
 
      <!-- ================= REPORTE REMISION  BEAN ===================================== -->
-     <managed-bean>
-   <managed-bean-name>reporteRemision</managed-bean-name>
-      <managed-bean-class>cr.ac.una.reg.info.bl.ReporteRemisionBean</managed-bean-class>
-      <managed-bean-scope>session</managed-bean-scope>
-   </managed-bean>
     <!-- ================================================================== -->
     <!-- ================= NAVEGACION ===================================== -->
     <!-- ================================================================== -->

@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +10,10 @@ import cr.ac.una.reg.info.bl.LoginBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+//import java.util.Vector;
+
 import java.util.ArrayList;
+//import java.util.List;
 
 /**
  *
@@ -18,15 +22,16 @@ import java.util.ArrayList;
 public class FuncionarioDao {
 
     private String vst_mensaje;
+    //private List EntityCollectionFuncionarios;
 
     public void buscarLogin(LoginBean ins_loginBean) throws Exception{
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
         try
         {
             ins_loginBean.setMsg("");
+
             vst_mensaje = "";
-            
+            ResultSet rs = null;
+            PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
             stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
             stmt.setString(1,ins_loginBean.getIdentificacion());
@@ -44,6 +49,7 @@ public class FuncionarioDao {
                 vst_nombreLoging += rs.getString("APELLIDO2");
                 ins_loginBean.setNombre(vst_nombreLoging.trim());
                 ins_loginBean.setEstado(rs.getInt("ID_ESTADO"));
+                //ins_loginBean.getString(rs.getInt("ESTADO"));
                 ins_loginBean.setContrasena(rs.getString("CONTRASENA"));
                 ins_loginBean.setRol(rs.getInt("ID_ROL"));
                 ins_loginBean.setMsg("");
@@ -63,22 +69,20 @@ public class FuncionarioDao {
                 vst_mensaje = "Usted no está autorizado para ingresar en el sistema. Por favor comuníquese con el administrador.";
                 ins_loginBean.setMsg(vst_mensaje);
             }
+            rs.close();
         }
         catch(Exception e){
             vst_mensaje = "Funcionario no existe.. \n";
             ins_loginBean.setMsg(vst_mensaje+e);
         }
-        finally{
-            stmt.close();
-            rs.close();
-        }
     }
 
     public void buscarFuncionarioPorNombre(FuncionarioBean ins_funcionarioBean) throws Exception{
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
         try{
             ins_funcionarioBean.setMsg("");
+
+            ResultSet rs = null;
+            PreparedStatement stmt = null;
             FuncionarioBean ins_funcionarioBeanTmp;
             ArrayList list_ins_funcionarios = new ArrayList();
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
@@ -106,40 +110,18 @@ public class FuncionarioDao {
 
                 list_ins_funcionarios.add(ins_funcionarioBeanTmp);
             }
-            else
-            {
-                ins_funcionarioBean.setIdentificacion("");
-                ins_funcionarioBean.setNombre("");
-                ins_funcionarioBean.setApellido1("");
-                ins_funcionarioBean.setApellido2("");
-                ins_funcionarioBean.setEmail("");
-                //ins_funcionarioBean.setIdEstado(0);
-                ins_funcionarioBean.setEstado(0);
-                ins_funcionarioBean.setEstado(0);
-                //ins_funcionarioBean.setContrasena("");
-                //ins_funcionarioBean.setIdRol(0);
-                ins_funcionarioBean.setRol(0);
-                ins_funcionarioBean.setRol(0);
-                ins_funcionarioBean.setIdDependencia(0);
-                //ins_funcionarioBean.setDependencia("");
-
-                vst_mensaje = "No se encontró en funcionario.";
-                ins_funcionarioBean.setMsg(vst_mensaje);
-            }
+            rs.close();
+            stmt.close();
 
             ins_funcionarioBean.setList_ins_funcionarios(list_ins_funcionarios);
 
         }catch(Exception e){
-            ins_funcionarioBean.setMsg("Funcionario no encontrado.");
-        }
-        finally{
-            stmt.close();
-            rs.close();
+            vst_mensaje = "Funcionario no encontrado.. \n";
+            ins_funcionarioBean.setMsg(vst_mensaje+e);
         }
     }
 
     public void buscarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
-        
         try
         {
            ins_funcionarioBean.setMsg("");
@@ -150,69 +132,55 @@ public class FuncionarioDao {
                 vst_mensaje = "";
                 ResultSet rs = null;
                 PreparedStatement stmt = null;
-                try
+                Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
+                stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
+                stmt.setString(1,ins_funcionarioBean.getIdentificacion());
+                rs = stmt.executeQuery();
+                rs.next();
+
+                if(rs.isFirst())//<== LOCALIZADO
                 {
-                    Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
-                    stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
-                    stmt.setString(1,ins_funcionarioBean.getIdentificacion());
-                    rs = stmt.executeQuery();
-                    rs.next();
-
-                    if(rs.isFirst())//<== LOCALIZADO
-                    {
-                        ins_funcionarioBean.setIdentificacion(rs.getString("ID_FUNCIONARIO"));
-                        ins_funcionarioBean.setNombre(rs.getString("NOMBRE"));
-                        ins_funcionarioBean.setApellido1(rs.getString("APELLIDO1"));
-                        ins_funcionarioBean.setApellido2(rs.getString("APELLIDO2"));
-                        ins_funcionarioBean.setEmail(rs.getString("EMAIL"));
-                        ins_funcionarioBean.setEstado(rs.getInt("ID_ESTADO"));
-                        //ins_funcionarioBean.getString(rs.getInt("ESTADO"));
-                        ins_funcionarioBean.setContrasena(rs.getString("CONTRASENA"));
-                        ins_funcionarioBean.setRol(rs.getInt("ID_ROL"));
-                        //ins_funcionarioBean.setRol(rs.getString("ROL"));
-                        ins_funcionarioBean.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
-                        //ins_funcionarioBean.setRol(rs.getString("DEPENDENCIA"));
-                        ins_funcionarioBean.setMsg("");
-                    }
-                    else
-                    {
-                        //ins_funcionarioBean.setIdentificacion("");
-                        ins_funcionarioBean.setNombre("");
-                        ins_funcionarioBean.setApellido1("");
-                        ins_funcionarioBean.setApellido2("");
-                        ins_funcionarioBean.setEmail("");
-                        //ins_funcionarioBean.setIdEstado(0);
-                        ins_funcionarioBean.setEstado(0);
-                        ins_funcionarioBean.setEstado(0);
-                        //ins_funcionarioBean.setContrasena("");
-                        //ins_funcionarioBean.setIdRol(0);
-                        ins_funcionarioBean.setRol(0);
-                        ins_funcionarioBean.setRol(0);
-                        ins_funcionarioBean.setIdDependencia(0);
-                        //ins_funcionarioBean.setDependencia("");
-
-                        vst_mensaje = "No se encontró en funcionario.";
-                        ins_funcionarioBean.setMsg(vst_mensaje);
-                    }
-                    rs.close();
-                    stmt.close();
+                    ins_funcionarioBean.setIdentificacion(rs.getString("ID_FUNCIONARIO"));
+                    ins_funcionarioBean.setNombre(rs.getString("NOMBRE"));
+                    ins_funcionarioBean.setApellido1(rs.getString("APELLIDO1"));
+                    ins_funcionarioBean.setApellido2(rs.getString("APELLIDO2"));
+                    ins_funcionarioBean.setEmail(rs.getString("EMAIL"));
+                    ins_funcionarioBean.setEstado(rs.getInt("ID_ESTADO"));
+                    //ins_funcionarioBean.getString(rs.getInt("ESTADO"));
+                    ins_funcionarioBean.setContrasena(rs.getString("CONTRASENA"));
+                    ins_funcionarioBean.setRol(rs.getInt("ID_ROL"));
+                    //ins_funcionarioBean.setRol(rs.getString("ROL"));
+                    ins_funcionarioBean.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
+                    //ins_funcionarioBean.setRol(rs.getString("DEPENDENCIA"));
+                    ins_funcionarioBean.setMsg("");
                 }
-                catch(Exception ex){
-                    rs.close();
-                    stmt.close();
+                else
+                {
+                    //ins_funcionarioBean.setIdentificacion("");
+                    ins_funcionarioBean.setNombre("");
+                    ins_funcionarioBean.setApellido1("");
+                    ins_funcionarioBean.setApellido2("");
+                    ins_funcionarioBean.setEmail("");
+                    //ins_funcionarioBean.setIdEstado(0);
+                    //ins_funcionarioBean.setEstado("");
+                    ins_funcionarioBean.setEstado(0);
+                    //ins_funcionarioBean.setContrasena("");
+                    //ins_funcionarioBean.setIdRol(0);
+                    //ins_funcionarioBean.setRol("");
+                    ins_funcionarioBean.setRol(0);
+                    ins_funcionarioBean.setIdDependencia(0);
+                    //ins_funcionarioBean.setDependencia("");
+
+                    vst_mensaje = "No se encontró en funcionario.";
+                    ins_funcionarioBean.setMsg(vst_mensaje);
                 }
+                rs.close();
            }
            else if(ins_funcionarioBean.getIdentificacion().equals(""))
            {
                 ArrayList list_ins_funcionarioBean = (ArrayList)this.listarFuncionarios();
                 //ins_funcionarioBean = new FuncionarioBean();
                 ins_funcionarioBean.setList_ins_funcionarios(list_ins_funcionarioBean);
-
-                if(list_ins_funcionarioBean.isEmpty())
-                {
-                    vst_mensaje = "No hay usuarios registrados en el sistema.";
-                    ins_funcionarioBean.setMsg(vst_mensaje);
-                }
            }
            else
            {
@@ -221,71 +189,58 @@ public class FuncionarioDao {
                 ArrayList list_ins_funcionarios = new ArrayList();
                 FuncionarioBean ins_funcionarioBeanTmp;
                 PreparedStatement stmt = null;
-                try{
-                    Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
-                    stmt = cx.prepareStatement("call ST_FUNCIONARIO_LIKE_ID(?)");
-                    stmt.setString(1,ins_funcionarioBean.getIdentificacion());
-                    rs = stmt.executeQuery();
+                Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
+                stmt = cx.prepareStatement("call ST_FUNCIONARIO_LIKE_ID(?)");
+                stmt.setString(1,ins_funcionarioBean.getIdentificacion());
+                rs = stmt.executeQuery();
 
-                    if(rs.isFirst())
-                    {
-                        while(rs.next()){
+                while(rs.next()){
 
-                            ins_funcionarioBeanTmp = new FuncionarioBean(
-                            rs.getString("ID_FUNCIONARIO"),
-                            rs.getString("NOMBRE"),
-                            rs.getString("APELLIDO1"),
-                            rs.getString("APELLIDO2"),
-                            rs.getString("EMAIL"),
-                            rs.getInt("ID_ESTADO"),
-                            rs.getString("CONTRASENA"),
-                            rs.getInt("ID_ROL"),
-                            rs.getInt("ID_DEPENDENCIA"),"");
-
-                            list_ins_funcionarios.add(ins_funcionarioBeanTmp);
-                        }
-                        ins_funcionarioBean.setList_ins_funcionarios(list_ins_funcionarios);
-                    }
-                    else
-                    {
-                        //ins_funcionarioBean.setIdentificacion("");
-                        ins_funcionarioBean.setNombre("");
-                        ins_funcionarioBean.setApellido1("");
-                        ins_funcionarioBean.setApellido2("");
-                        ins_funcionarioBean.setEmail("");
-                        ins_funcionarioBean.setEstado(0);
-                        //ins_funcionarioBean.setEstado("");
-                        ins_funcionarioBean.setEstado(0);
-                        //ins_funcionarioBean.setContrasena("");
-                        //ins_funcionarioBean.setIdRol(0);
-                        ins_funcionarioBean.setRol(0);
-                        ins_funcionarioBean.setRol(0);
-                        ins_funcionarioBean.setIdDependencia(0);
-                        //ins_funcionarioBean.setDependencia("");
-
-                        vst_mensaje = "No se encontró en funcionario.";
-                        ins_funcionarioBean.setMsg(vst_mensaje);
-                    }
-                    rs.close();
-                    stmt.close();
+                    ins_funcionarioBeanTmp = new FuncionarioBean(
+                    rs.getString("ID_FUNCIONARIO"),
+                    rs.getString("NOMBRE"),
+                    rs.getString("APELLIDO1"),
+                    rs.getString("APELLIDO2"),
+                    rs.getString("EMAIL"),
+                    rs.getInt("ID_ESTADO"),
+                    rs.getString("CONTRASENA"),
+                    rs.getInt("ID_ROL"),
+                    rs.getInt("ID_DEPENDENCIA"),"");
+                    /*
+                    ins_funcionarioBeanTmp = new FuncionarioBean();
+                    ins_funcionarioBeanTmp.setIdentificacion(rs.getString("ID_FUNCIONARIO"));
+                    ins_funcionarioBeanTmp.setNombre(rs.getString("NOMBRE"));
+                    ins_funcionarioBeanTmp.setApellido1(rs.getString("APELLIDO1"));
+                    ins_funcionarioBeanTmp.setApellido2(rs.getString("APELLIDO2"));
+                    ins_funcionarioBeanTmp.setEmail(rs.getString("EMAIL"));
+                    ins_funcionarioBeanTmp.setEstado(rs.getInt("ID_ESTADO"));
+                    //ins_funcionarioBeanTmp.getString(rs.getInt("ESTADO"));
+                    ins_funcionarioBeanTmp.setContrasena(rs.getString("CONTRASENA"));
+                    ins_funcionarioBeanTmp.setRol(rs.getInt("ID_ROL"));
+                    //ins_funcionarioBeanTmp.setRol(rs.getString("ROL"));
+                    ins_funcionarioBeanTmp.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
+                    //ins_funcionarioBeanTmp.setRol(rs.getString("DEPENDENCIA"));
+                    */
+                    list_ins_funcionarios.add(ins_funcionarioBeanTmp);
                 }
-                catch(Exception ex){
-                    rs.close();
-                    stmt.close();
-                }
+                rs.close();
+                stmt.close();
+
+                ins_funcionarioBean.setList_ins_funcionarios(list_ins_funcionarios);
+
            }
         }
         catch(Exception e){
-            ins_funcionarioBean.setMsg("Funcionario no encontrado.");
+            vst_mensaje = "Funcionario no encontrado.. \n";
+            ins_funcionarioBean.setMsg(vst_mensaje+e);
         }
-        
     }
 
-    public void agregarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
+    public void agregarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{       
         try
-        {            
+        {
+            ResultSet rs = null;
+            PreparedStatement stmt = null;
             Connection cx;
             try
             {
@@ -296,7 +251,7 @@ public class FuncionarioDao {
                 vst_mensaje = "Error al establecer la conexión con la base de datos SIGEPEX.\n"+ex;
                 throw ex;
             }
-            cx = DatabaseUtil.getConnectionFactory().getConnection();
+            cx= DatabaseUtil.getConnectionFactory().getConnection();
             try{
                 stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
             }
@@ -340,25 +295,33 @@ public class FuncionarioDao {
                 }
             }
             else
-            {
                 ins_funcionarioBean.setMsg("El funcionario ya está registrado en el sistema.");
+
+            /*
+            // PARA EL PROTOTIPO
+            Integer indexOf = this.call_ST_FUNCIONARIO_BUSCAR(ins_funcionarioBean,this.EntityCollectionFuncionarios);
+            if(indexOf == -1)
+            {
+                this.EntityCollectionFuncionarios.add(ins_funcionarioBean);
+                ins_funcionarioBean.setMsg("Funcionario Registrado con éxito.");
             }
-            //rs.close();
-            //stmt.close();
+            else
+                ins_funcionarioBean.setMsg("El funcionario ya está registrado en el sistema.");
+            // FIN PROTOTIPO
+            */
         }
-        catch(Exception e){ }
-        finally{
-            stmt.close();
-            rs.close();
-        }
+        catch(Exception e){
+            //ins_funcionarioBean.setMsg("El funcionario ya está registrado en el sistema.");
+            //vst_mensaje = "El funcionario ya está registrado en el sistema.\n"+e;
+        }        
     }
 
     public void modificarFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception
     {
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
         try
-        {            
+        {
+            ResultSet rs = null;
+            PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
             stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
             stmt.setString(1,ins_funcionarioBean.getIdentificacion());
@@ -382,28 +345,37 @@ public class FuncionarioDao {
                 ins_funcionarioBean.setMsg("Funcionario Actualizado con éxito.");
             }
             else
-            {
                 ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
+         
+
+             /*
+             // PARA EL PROTOTIPO
+            Integer indexOf = this.call_ST_FUNCIONARIO_BUSCAR(ins_funcionarioBean,this.EntityCollectionFuncionarios);
+
+            if(indexOf == -1)
+            if(this.EntityCollectionFuncionarios.indexOf(ins_funcionarioBean) == -1)
+                ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
+            else
+            {
+                this.EntityCollectionFuncionarios.remove(indexOf);
+                this.EntityCollectionFuncionarios.add(ins_funcionarioBean);
+                ins_funcionarioBean.setMsg("Funcionario Actualizado con éxito.");
             }
-            //rs.close();
-            //stmt.close();
+            // FIN PROTOTIPO
+            */
         }
         catch(Exception e){
             ins_funcionarioBean.setMsg("Error al tratar de actualizar el funcionario.");
             vst_mensaje = "error al tratar de actualizar el funcionario.\n"+e;
         }
-        finally{
-            stmt.close();
-            rs.close();
-        }
     }
 
     public void suspenderFuncionario(FuncionarioBean ins_funcionarioBean)throws Exception
     {
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
          try
-         {             
+         {
+             ResultSet rs = null;
+             PreparedStatement stmt = null;
              Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
              stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
              stmt.setString(1,ins_funcionarioBean.getIdentificacion());
@@ -419,29 +391,40 @@ public class FuncionarioDao {
                 stmt.close();
             }
             else
-            {
                 ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
-            }
-            //rs.close();
-            //stmt.close();
+
+                /*
+                // PARA EL PROTOTIPO
+                Integer indexOf = this.call_ST_FUNCIONARIO_BUSCAR(ins_funcionarioBean,this.EntityCollectionFuncionarios);
+
+                if(indexOf == -1)
+                if(this.EntityCollectionFuncionarios.indexOf(ins_funcionarioBean) == -1)
+                    ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
+                else
+                {
+                    this.EntityCollectionFuncionarios.remove(indexOf);
+                    this.EntityCollectionFuncionarios.add(ins_funcionarioBean);
+                    if(ins_funcionarioBean.getEstado()==0)
+                        ins_funcionarioBean.setMsg("Funcionario suspendido con éxito.");
+                    else
+                        ins_funcionarioBean.setMsg("Funcionario autenticado con éxito.");
+                }
+                // FIN PROTOTIPO
+                */
          }
          catch(Exception e){
              ins_funcionarioBean.setMsg("Error al tratar de suspender el funcionario.\n"+e);
              vst_mensaje = "error al tratar de suspender el funcionario.\n"+e;
         }
-        finally{
-            stmt.close();
-            rs.close();
-        }
     }
 
     public void actualizarEstadoFuncionario(FuncionarioBean ins_funcionarioBean) throws Exception{
-        ResultSet rs = null;
-        PreparedStatement stmt = null;
         try
         {
             ins_funcionarioBean.setMsg("");
-            
+
+            ResultSet rs = null;
+            PreparedStatement stmt = null;
             Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
             stmt = cx.prepareStatement("call ST_FUNCIONARIO_BUSCAR(?)");
             stmt.setString(1,ins_funcionarioBean.getIdentificacion());
@@ -456,30 +439,40 @@ public class FuncionarioDao {
                 stmt.execute();
                 stmt.close();
             }
+             else
+                ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
+         
+         /*
+         // PARA EL PROTOTIPO
+        Integer indexOf = this.call_ST_FUNCIONARIO_BUSCAR(ins_funcionarioBean,this.EntityCollectionFuncionarios);
+        
+        if(indexOf == -1)
+        if(this.EntityCollectionFuncionarios.indexOf(ins_funcionarioBean) == -1)
+            ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
+        else
+        {
+            this.EntityCollectionFuncionarios.remove(indexOf);
+            this.EntityCollectionFuncionarios.add(ins_funcionarioBean);
+            if(ins_funcionarioBean.getEstado()==0)
+                ins_funcionarioBean.setMsg("Funcionario suspendido con éxito.");
             else
-            {
-               ins_funcionarioBean.setMsg("El funcionario no está registrado en el sistema.");
-            }
-            //rs.close();
-            //stmt.close();
+                ins_funcionarioBean.setMsg("Funcionario autenticado con éxito.");
+        }
+        // FIN PROTOTIPO
+        */
         }
         catch(Exception e){
              ins_funcionarioBean.setMsg("Error al tratar de actualizar el estado el funcionario.\n"+e);
              vst_mensaje = "error al tratar de actualizar el estado el funcionario.\n"+e;
-        }
-        finally{
-            stmt.close();
-            rs.close();
         }
     }
 
      public ArrayList listarFuncionarios() throws Exception
      {
         ResultSet rs = null;
-        PreparedStatement stmt = null;
         ArrayList list_ins_funcionarios = new ArrayList();
         FuncionarioBean ins_funcionarioBean;
-        try{
+        PreparedStatement stmt = null;
         Connection cx = DatabaseUtil.getConnectionFactory().getConnection();
         stmt = cx.prepareStatement("call ST_FUNCIONARIO_LISTAR_TODOS()");
         rs = stmt.executeQuery();
@@ -495,17 +488,25 @@ public class FuncionarioDao {
                     rs.getString("CONTRASENA"),
                     rs.getInt("ID_ROL"),
                     rs.getInt("ID_DEPENDENCIA"),"");
+            /*
+            ins_funcionarioBean.setIdentificacion(rs.getString("ID_FUNCIONARIO"));
+            ins_funcionarioBean.setNombre(rs.getString("NOMBRE"));
+            ins_funcionarioBean.setApellido1(rs.getString("APELLIDO1"));
+            ins_funcionarioBean.setApellido2(rs.getString("APELLIDO2"));
+            ins_funcionarioBean.setEmail(rs.getString("EMAIL"));
+            ins_funcionarioBean.setEstado(rs.getInt("ID_ESTADO"));
+            //ins_funcionarioBean.getString(rs.getInt("ESTADO"));
+            ins_funcionarioBean.setContrasena(rs.getString("CONTRASENA"));
+            ins_funcionarioBean.setRol(rs.getInt("ID_ROL"));
+            //ins_funcionarioBean.setRol(rs.getString("ROL"));
+            ins_funcionarioBean.setIdDependencia(rs.getInt("ID_DEPENDENCIA"));
+            //ins_funcionarioBean.setRol(rs.getString("DEPENDENCIA"));
+            */
 
             list_ins_funcionarios.add(ins_funcionarioBean);
         }
-        //rs.close();
-        //stmt.close();
-        }
-        catch(Exception e){ }
-        finally{
-            stmt.close();
-            rs.close();
-        }
+        rs.close();
+        stmt.close();
             
         return list_ins_funcionarios;
     }

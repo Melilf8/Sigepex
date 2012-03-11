@@ -38,8 +38,6 @@ public class IUsPorRolDao {
         Boolean vbo_ius_checked = false;
         try
         {
-            ins_uisPorRolBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -86,7 +84,7 @@ public class IUsPorRolDao {
     public void listarIUsPorRol(IUsPorRolBean ins_uisPorRolBean) throws Exception
      {
         try {
-            ins_uisPorRolBean.setMsg("");
+            //ins_uisPorRolBean.setMsg("");
 
             ResultSet rs = null;
             PreparedStatement stmt = null;
@@ -118,7 +116,7 @@ public class IUsPorRolDao {
     public void listarIUsPorRol_Todas(IUsPorRolBean ins_uisPorRolBean) throws Exception
      {
         try {
-            ins_uisPorRolBean.setMsg("");
+            //ins_uisPorRolBean.setMsg("");
 
             ResultSet rs = null;
             PreparedStatement stmt = null;
@@ -148,7 +146,7 @@ public class IUsPorRolDao {
     public void listar_MisIUs_porRol(IUsPorRolBean ins_uisPorRolBean) throws Exception
      {
         try {
-            ins_uisPorRolBean.setMsg("");
+            //ins_uisPorRolBean.setMsg("");
             
             ResultSet rs = null;
             PreparedStatement stmt = null;

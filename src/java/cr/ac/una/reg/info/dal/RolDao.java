@@ -57,8 +57,6 @@ public class RolDao {
     public void agregarRol(RolBean ins_rolBean) throws Exception{
         try
        {
-            ins_rolBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -122,8 +120,6 @@ public class RolDao {
     {
         try
         {
-            ins_rolBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -155,8 +151,6 @@ public class RolDao {
     {
         try
         {
-            ins_rolBean.setMsg("");
-            
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();

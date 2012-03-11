@@ -2,16 +2,26 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cr.ac.una.reg.info.bl;
 
+import com.mysql.jdbc.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
  * @author vindasloiza
  */
-public class ReporteRemisionBean  {
+public class ReporteRemisionBean {
+
     private int ordenId;
     private String fechaInicio;
     private String fechaFinal;
@@ -115,11 +125,12 @@ public class ReporteRemisionBean  {
         this.folios = folios;
         this.tabledata = tabledata;
     }
-    public ReporteRemisionBean(){
+
+    public ReporteRemisionBean() {
     }
 
     public ReporteRemisionBean(int ordenId, String dependencia, String funcionario,
-                                String idEstudiante, String nombre, String tDocumental, String folios) {
+            String idEstudiante, String nombre, String tDocumental, String folios) {
         this.ordenId = ordenId;
         this.dependencia = dependencia;
         this.funcionario = funcionario;
@@ -129,32 +140,83 @@ public class ReporteRemisionBean  {
         this.folios = folios;
     }
 
+    public void Buscar() {
+        this.tabledata = new ArrayList<ReporteRemisionBean>();
 
-
-
-
-
- public void Buscar()
- {
-       this.tabledata = new ArrayList<ReporteRemisionBean>();
- 
-        for(int i=0;i<20;i++)
-        {
-            this.tabledata.add( new ReporteRemisionBean(i,
-                    (this.dependencia.equals("")?"dependecia"+i:this.dependencia.toString()),
-                    (this.fechaInicio.equals("")?"Funcionario"+i:this.funcionario.toString()),
-                    (this.idEstudiante.equals("")?"IdEstudiante"+i:this.idEstudiante.toString()),
-                    "Nombre"+i,
-                    "Documental"+i,
-                    "folio"+i
-                    ));
+        for (int i = 0; i < 20; i++) {
+            this.tabledata.add(new ReporteRemisionBean(i,
+                    (this.dependencia.equals("") ? "dependecia" + i : this.dependencia.toString()),
+                    (this.fechaInicio.equals("") ? "Funcionario" + i : this.funcionario.toString()),
+                    (this.idEstudiante.equals("") ? "IdEstudiante" + i : this.idEstudiante.toString()),
+                    "Nombre" + i,
+                    "Documental" + i,
+                    "folio" + i));
         }
 
-  }
+    }
+
+    public byte[] getBytes(String valor, String fechaIni, String fechaFin, String dependen, String funcionario, String IdEstudia) throws JRException, SQLException {
+        String bd = "Sigepex";
+        String login = "root";
+        String password = "root";
+        String url = "jdbc:mysql://localhost/" + bd;
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            con = (Connection) DriverManager.getConnection(url, login, password);
+            if (!con.isClosed()) {
+                System.out.println("Successfully connected to " +
+                        "MySQL server using TCP/IP...");
+            }
+        } catch (Exception e) {
+            System.err.println("Exception: " + e.getMessage());
+        }
+
+
+        HashMap jasperParameter = new HashMap();
+        jasperParameter.put("FECHAINICIO", fechaIni);
+        jasperParameter.put("FECHAFIN", fechaFin);
+        jasperParameter.put("DEPENDENCIA", dependen);
+        jasperParameter.put("FUNCIONARIO", funcionario);
+        jasperParameter.put("IDESTUDIANTE", IdEstudia);
+        JasperReport report = null;
+        try {
+            report = JasperCompileManager.compileReport(valor);
+        } catch (Exception t) {
+            String h = "";
+        }
+
+        JasperPrint print = null;
+        try {
+            print = JasperFillManager.fillReport(report, jasperParameter, con);
+        } catch (Exception eeee) {
+            String ee = "";
+        }
 
 
 
+        //Exporta el informe a PDF
+        String destFileNamePdf = "C:\\reporte1.pdf";
+        //Creación del PDF
+        JasperExportManager.exportReportToPdfFile(print, destFileNamePdf);
 
+        byte[] pdfByteArray = JasperExportManager.exportReportToPdf(print);
 
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+        }
 
+        return pdfByteArray;
+    }
 }
+
+
+
+
+
+
+
+

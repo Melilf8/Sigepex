@@ -2,7 +2,7 @@
 <!--
     Document   : frm_reporte_prestamo_estudiante
     Created on : Nov 3, 2011, 6:32:23 PM
-    Author     : estudiante
+    Author     : Melissa
 -->
 <f:view xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html"
@@ -38,6 +38,7 @@
                   <tr>
                     <td align="left" colspan="4" bgcolor="#E9E9E9">
                         <ice:commandButton style="#{popup.margenIzqBtnAyuda}" styleClass="formatorojo" value="Ayuda" action="#{popup.openPopup_ReportePrestamo}"/>
+                        <ice:outputLabel style="#{popup.rutaPagina}">Ruta: Reportes / Préstamo Expedientes</ice:outputLabel>
                     </td>
                  </tr>
               </table>
@@ -68,7 +69,7 @@
         </ice:form>
 
         <table align="center" cellpadding="0" cellspacing="0" width="855">
-
+    
             <tr><td colspan="4"></td></tr>
             <tr><td colspan="4"></td></tr>
             <tr><td colspan="4"></td></tr>
@@ -100,7 +101,7 @@
                     </p>
 
                 </div><!-- End demo -->
-
+             
             </div>
             </ice:form>
    </body>

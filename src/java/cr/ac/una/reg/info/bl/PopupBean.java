@@ -27,7 +27,8 @@ public class PopupBean
     private static String urlImagenCerrar = "./imagenes/close.gif";
     private static String margenIzqBtnAyuda = "margin-left:24px";
     private static String rutaPagina = "font-weight:bold;margin-left:25px;text-align:left;color:blue;";
-
+    private static String mensajeSalvarDatos = "¿Desea guardar los cambios efectuados?";
+    private static String mensajeActualizarDatos = "¿Desea actualizar los cambios efectuados?";
     /* ESTA INSTANCIA CONTIENE LOS IDS DE LAS IUS QUE SE UTILIZAN
        EN CADA POPUP PARA LOS MSJ DE AYUDA Y ASI COMO LAS ID_UIs DE CONSULTA A LA BD.
      */
@@ -58,10 +59,14 @@ public class PopupBean
     /* PROPIEDAD PARA EL BOTON AYUDA QUE ABRE EL POPUP DE CADA FORM */
     public String getMargenIzqBtnAyuda() {return margenIzqBtnAyuda;}
 
+    /* MENSAJE PARA ACEPTAR SALVAR LOS CAMBIOS*/
+    public String getMensajeSalvarDatos() { return mensajeSalvarDatos; }
+
+    /* MENSAJE PARA ACEPTAR ACTUALIZAR LOS CAMBIOS*/
+    public String getMensajeActualizarDatos() { return mensajeActualizarDatos; }
+
     /* PROPIEDAD PARA LA RUTA DE LA PAGINA */
-    public String getRutaPagina() {
-        return rutaPagina;
-    }
+    public String getRutaPagina() { return rutaPagina; }
 
     /* METODOS QUE OBTIENEN EL TEXTO DE AYUDA CORRESPONDIENTE A CADA POPUP DE CADA IU */
     //@WebMethod(operationName="openPopup_InformacionSigepex")

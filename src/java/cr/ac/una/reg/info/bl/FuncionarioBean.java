@@ -38,6 +38,10 @@ public class FuncionarioBean {
     private boolean visible = false;
     private Boolean checked;
     private String msgErrorID;
+    private boolean salvarDatos = false;
+    private boolean mostrarPopup = false;
+    private boolean actualizarDatos = false;
+    private boolean mostrarPopupActualizar = false;
 
     // records the param value for the menu item which fired the event
     // Despues de las pruebas debo eliminar este atributo.
@@ -151,6 +155,66 @@ public class FuncionarioBean {
     public String getMsgErrorID() { return msgErrorID; }
     public void setMsgErrorID(String msgErrorID) { 
         this.msgErrorID = msgErrorID;
+    }
+
+    /* Para controlar el popup de salvar datos */
+    public boolean getMostrarPopup() { return mostrarPopup; }
+    public void setMostrarPopup(boolean mostrarPopup) {
+        this.mostrarPopup = mostrarPopup;
+    }
+
+    public void closePopupSalvar() { mostrarPopup = false; }
+    public void closePopupActualizar() { mostrarPopupActualizar = false; }
+
+    /* Para controlar el popup de actualizar datos */
+    public boolean getMostrarPopupActualizar() { return mostrarPopupActualizar; }
+    public void setMostrarPopupActualizar(boolean mostrarPopup) {
+        this.mostrarPopupActualizar = mostrarPopup;
+    }
+
+    public boolean getSalvarDatos() { return salvarDatos; }
+    public void setSalvarDatos(boolean salvarDatos) {
+        this.salvarDatos = salvarDatos;
+    }
+
+    public boolean getActualizarDatos() { return actualizarDatos; }
+    public void setActualizarDatos(boolean actualizarDatos) {
+        this.actualizarDatos = actualizarDatos;
+    }
+
+
+    public String AceptarSalvar()
+    {
+        this.setMsg(this.getMsg());
+        this.setSalvarDatos(true);
+        this.setMostrarPopup(false);
+        this.SaveFuncionario();
+        return "";
+    }
+
+    public String RechazarSalvar()
+    {
+        this.setMsg(this.getMsg());
+        this.setSalvarDatos(false);
+        this.setMostrarPopup(false);
+        return "";
+    }
+
+    public String AceptarActualizar()
+    {
+        this.setMsg(this.getMsg());
+        this.setActualizarDatos(true);
+        this.setMostrarPopupActualizar(false);
+        this.UpdateFuncionario();
+        return "";
+    }
+
+    public String RechazarActualizar()
+    {
+        this.setMsg(this.getMsg());
+        this.setActualizarDatos(false);
+        this.setMostrarPopupActualizar(false);
+        return "";
     }
 
     /* LLENADO DE LOS COMBOS DEL FORMULARIO*/
@@ -355,24 +419,43 @@ public class FuncionarioBean {
          return "";
     }
 
+    public String inicializarPagina()
+    {
+        String vst_return = this.setear_ins_FuncionarioBean();
+        this.setList_ins_funcionarios(new ArrayList());
+        this.setMsgErrorID("");
+
+        this.getList_ins_SelectItem_roles();
+        this.getList_ins_SelectItem_estados();
+        this.getList_ins_SelectItem_dependencias();
+
+        return "";
+    }
+
     // para la navegacion desde el frm_mantenimiento_usuarios
     public String consultarFuncionario() throws Exception
     {
         this.setMsg("");
         String vst_mensaje="";
+        this.setList_ins_funcionarios(new ArrayList());
         /*
         if(this.getIdentificacion().equals(""))
             this.setMsg("Debe ingresar la identificación del funcionario.");
         else
         */
+            // CONSULTAR POR IDNTIFICACION
             if(this.getNombre().equals("") && this.getApellido1().equals("") && this.getApellido2().equals(""))
             {
                  Servicio.funcionarioConsultar(this);
-
-                 // PARA ABRIR EL POPUP
+                 
                  if(this.getIdentificacion().equals("")|| this.getIdentificacion().length()< 9)
                  {
-                     if(new ToolBean().ValidarEsNumero(this.getIdentificacion().trim()))
+                     if(this.getList_ins_funcionarios().size() > 1)
+                     {
+                         // PARA ABRIR EL POPUP
+                          this.setVisible(true);
+                     }
+                     else if(new ToolBean().ValidarEsNumero(this.getIdentificacion().trim()))
                      {
                          this.setMsgErrorID("");
                         /* El popup se abre siempre y cuando la consulta haya arrojado mas de un registro
@@ -383,17 +466,21 @@ public class FuncionarioBean {
                             FuncionarioBean ins_funcionarioBean_Tmp = (FuncionarioBean)this.getList_ins_funcionarios().get(0);
                             cargar_this_ins_FuncionarioBean(ins_funcionarioBean_Tmp);
                         }
-                        else
+                        else if(this.getList_ins_funcionarios().size() > 1)
+                        {
+                            // PARA ABRIR EL POPUP
                             this.setVisible(true);
+                        }
                      }
                      else
                      {
-                        this.setMsgErrorID("* Formato inválido. Ejemplo: 101110111");
+                        this.setMsgErrorID("*");
+                        this.setMsg("Formato inválido. Ejemplo: 101110111");
                         return "";
                      }
                  }
             }
-            else
+            else    // CONSULTAR POR NOMBRE Y APELLIDOS
             {
                 Servicio.funcionarioConsultarPorNombre(this);
                 /* El popup se abre siempre y cuando la consulta haya arrojado mas de un registro
@@ -404,8 +491,11 @@ public class FuncionarioBean {
                     FuncionarioBean ins_funcionarioBean_Tmp = (FuncionarioBean)this.getList_ins_funcionarios().get(0);
                     cargar_this_ins_FuncionarioBean(ins_funcionarioBean_Tmp);
                 }
-                else
+                else if(this.getList_ins_funcionarios().size() > 1)
+                {
+                    // PARA ABRIR EL POPUP
                     this.setVisible(true);
+                }
             }
 
         return vst_mensaje;
@@ -418,7 +508,7 @@ public class FuncionarioBean {
         String vst_mensaje="";
         ArrayList list_st_comentarios = new ArrayList();
         /* Campos requeridos para registrar un funcionario */
-        if(this.getIdentificacion().equals(""))list_st_comentarios.add(" el Usuario");
+        if(this.getIdentificacion().equals(""))list_st_comentarios.add(" la Identificación");
         if(this.getNombre().equals(""))list_st_comentarios.add(" el Nombre");
         if(this.getApellido1().equals(""))list_st_comentarios.add(" el Apellido1");
         if(this.getApellido2().equals(""))list_st_comentarios.add(" el Apellido2");
@@ -454,31 +544,99 @@ public class FuncionarioBean {
             {
                 if(this.getIdentificacion().length() < 9)
                 {
-                    this.setMsgErrorID("* La identificación no puede ser menor a 9 digitos.");
+                    this.setMsgErrorID("*");
+                    this.setMsg("La identificación no puede ser menor a 9 dígitos.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getNombre()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El nombre debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getApellido1()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El apellido1 debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getApellido2()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El apellido2 debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsEmail(this.getEmail()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("Formato inválido para el email.");
                     return "";
                 }
                 else
                 {
                     this.setMsgErrorID("");
 
-                    Servicio.funcionarioAgregar(this);
+                    this.setMostrarPopup(true);
 
-                    if(this.getIdentificacion().equals(""))
-                        return "noestaregistrado";
+                    //if(this.getSalvarDatos())
+                    /*
+                    if(true)
+                    {
+                        Servicio.funcionarioAgregar(this);
+
+                        if(this.getIdentificacion().equals(""))
+                            return "noestaregistrado";
+                        else
+                        {
+                            if(this.getMsg().equals("El funcionario ya está registrado en el sistema."))
+                                return "yaexiste";
+                            else
+                                return "registrado";
+                        }
+                    }
                     else
                     {
-                        if(this.getMsg().equals("El funcionario ya está registrado en el sistema."))
-                            return "yaexiste";
-                        else
-                            return "registrado";
+                        return "";
                     }
+                    */
+                    return "";
                 }
             }
             else
              {
-                this.setMsgErrorID("* Formato inválido... ==> 101110111");
+                this.setMsgErrorID("*");
+                this.setMsg("Formato inválido... ==> 101110111");
                 return "";
              }
+        }
+    }
+
+    public void SaveFuncionario()
+    {
+        String vst_mensaje = "";
+        try
+        {
+            if(this.getSalvarDatos())
+            {
+                Servicio.funcionarioAgregar(this);
+
+                if(this.getIdentificacion().equals(""))
+                    vst_mensaje = "noestaregistrado";
+                else
+                {
+                    if(this.getMsg().equals("El funcionario ya está registrado en el sistema."))
+                        vst_mensaje = "yaexiste";
+                    else
+                        vst_mensaje = "registrado";
+                }
+            }
+            else
+            {
+                vst_mensaje = "";
+            }
+        }
+        catch (Exception ex) {
+            Logger.getLogger(FuncionarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -490,7 +648,7 @@ public class FuncionarioBean {
         ArrayList list_st_comentarios = new ArrayList();
 
         /* Campos requeridos para actualizar el funcionario */
-        if(this.getIdentificacion().equals(""))list_st_comentarios.add(" el Usuario");
+        if(this.getIdentificacion().equals(""))list_st_comentarios.add(" la Identificación");
         if(this.getNombre().equals(""))list_st_comentarios.add(" el Nombre");
         if(this.getApellido1().equals(""))list_st_comentarios.add(" el Apellido1");
         if(this.getApellido2().equals(""))list_st_comentarios.add(" el Apellido2");
@@ -526,26 +684,89 @@ public class FuncionarioBean {
             {
                 if(this.getIdentificacion().length() < 9)
                 {
-                    this.setMsgErrorID("* La identificación no puede ser menor a 9 dígitos.");
+                    this.setMsgErrorID("*");
+                    this.setMsg("La identificación no puede ser menor a 9 dígitos.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getNombre()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El nombre debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getApellido1()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El apellido1 debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsPalabra(this.getApellido2()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("El apellido2 debe contener únicamente letras.");
+                    return "";
+                }
+                else if(!new ToolBean().ValidarEsEmail(this.getEmail()))
+                {
+                    this.setMsgErrorID("*");
+                    this.setMsg("Formato inválido para el correo.");
                     return "";
                 }
                 else
                 {
                     this.setMsgErrorID("");
 
-                    Servicio.funcionarioModificar(this);
+                    this.setMostrarPopupActualizar(true);//setMostrarPopup(true);
 
-                    if(this.getIdentificacion().equals(""))
-                        return "noexiste";
+                    /*
+                    //if(this.getSalvarDatos())
+                    if(true)
+                    {
+                        Servicio.funcionarioModificar(this);
+
+                        if(this.getIdentificacion().equals(""))
+                            return "noexiste";
+                        else
+                            return "actualizado";
+                    }
                     else
-                        return "actualizado";
+                    {
+                        return "";
+                    }
+                    */
+                    return "";
                 }
             }
             else
             {
-                this.setMsgErrorID("* Formato inválido... ==> 101110111");
+                this.setMsgErrorID("*");
+                this.setMsg("Formato inválido... ==> 101110111");
                 return "";
             }
+        }
+    }
+
+    private void UpdateFuncionario()
+    {
+        String vst_mensaje = "";
+        try{
+            if(this.getActualizarDatos())
+            {
+                Servicio.funcionarioModificar(this);
+
+                if(this.getIdentificacion().equals(""))
+                    vst_mensaje = "noexiste";
+                else
+                    vst_mensaje = "actualizado";
+            }
+            else
+            {
+                vst_mensaje = "";
+            }
+
+        }
+        catch (Exception ex) {
+            Logger.getLogger(FuncionarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -582,7 +803,7 @@ public class FuncionarioBean {
             String vst_mensaje="";
             if(this.getIdentificacion().equals(""))
             {
-                vst_mensaje = "Debe ingresar la Identificaci�n.";
+                vst_mensaje = "Debe ingresar la Identificación.";
                 this.setMsg(vst_mensaje);
                 return "rptnogenedado";
             }

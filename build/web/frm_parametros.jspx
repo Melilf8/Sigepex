@@ -79,10 +79,10 @@
                 <tr>
                     <td  width="230"></td>
                      <td width="130" align="left">
-                         <ice:inputText id="txt_in_idParametro"  styleClass="textBoxPeq" value="#{parametroBean.idParametro}" maxlength="10" tabindex="1"/>
+                         <ice:inputText id="txt_in_idParametro"  styleClass="textBoxPeq" value="#{parametroBean.idParametro}" maxlength="3" tabindex="1"/>
                      </td>
                      <td width="140" align="left">
-                         <ice:inputText id="txt_in_valor"  styleClass="textBoxPeq" value="#{parametroBean.valor}" maxlength="10" tabindex="2"/>
+                         <ice:inputText id="txt_in_valor"  styleClass="textBoxPeq" value="#{parametroBean.valor}" maxlength="3" tabindex="2"/>
                      </td>
                      <td width="310" align="left">
                         <ice:commandButton id="btn_actualizar" styleClass="formatoazulclaro" value="Actualizar" action="#{parametroBean.actualizarParametro}"/>
@@ -95,7 +95,7 @@
                  <!-- MENSAJES -->
                  <tr>
                     <td colspan="4" align="center">
-                        <ice:outputText styleClass="labelMensajeError" value="#{parametroBean.msg}"></ice:outputText>
+                        <ice:outputText styleClass="labelMensajeError" style="color:red;" value="#{parametroBean.msg}"></ice:outputText>
                     </td>
                 </tr>
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>

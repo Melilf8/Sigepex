@@ -50,8 +50,6 @@ public class SerieDocumentalDao {
     public void agregarSerieDocumental(SerieDocumentalBean ins_serieDocumentalBean) throws Exception{
        try
        {
-            ins_serieDocumentalBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx;
@@ -109,8 +107,6 @@ public class SerieDocumentalDao {
     {
         try
         {
-            ins_serieDocumentalBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -143,8 +139,6 @@ public class SerieDocumentalDao {
         Integer vint_count = 0;
         try
         {
-            ins_serieDocumentalBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -186,7 +180,7 @@ public class SerieDocumentalDao {
     public void listarSeriesDocumentales(SerieDocumentalBean ins_serieDocumentalBean) throws Exception
      {
         try{
-            ins_serieDocumentalBean.setMsg("");
+            //ins_serieDocumentalBean.setMsg("");
 
             ResultSet rs = null;
             ArrayList list_ins_seriesDoc = new ArrayList();

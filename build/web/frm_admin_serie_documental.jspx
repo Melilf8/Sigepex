@@ -82,7 +82,7 @@
                 <tr>
                     <td style="width: 183px;"></td>
                      <td align="left">
-                         <ice:inputText id="txt_in_idSerieDoc"  styleClass="textBoxPeq" value="#{serieDocBean.idSerieDocumental}" maxlength="10" tabindex="1"/>
+                         <ice:inputText id="txt_in_idSerieDoc"  styleClass="textBoxPeq" value="#{serieDocBean.idSerieDocumental}" maxlength="3" tabindex="1"/>
                      </td>
                      <td>
                          <ice:inputText id="txt_in_nombre"  styleClass="textBox1" value="#{serieDocBean.tipoDocumental}" maxlength="45" tabindex="2"
@@ -100,7 +100,7 @@
                  <!-- MENSAJES -->
                  <tr>
                     <td colspan="4" align="center">
-                        <ice:outputText styleClass="labelMensajeError" value="#{serieDocBean.msg}"></ice:outputText>
+                        <ice:outputText styleClass="labelMensajeError" style="color:red;" value="#{serieDocBean.msg}"></ice:outputText>
                     </td>
                 </tr>
                 <tr><td align="center" colspan="4" bgcolor="#E9E9E9"></td></tr>

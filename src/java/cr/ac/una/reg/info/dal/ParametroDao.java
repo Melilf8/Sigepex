@@ -18,8 +18,6 @@ public class ParametroDao {
     {
         try
         {
-            ins_parametroBean.setMsg("");
-
             ResultSet rs = null;
             PreparedStatement stmt = null;
             Connection cx= DatabaseUtil.getConnectionFactory().getConnection();
@@ -49,7 +47,7 @@ public class ParametroDao {
      {
         try
         {
-            ins_parametroBean.setMsg("");
+            //ins_parametroBean.setMsg("LISTA DE PARAMETROS DEL SISTEMA");
 
             ResultSet rs = null;
             ArrayList list_ins_parametros = new ArrayList();

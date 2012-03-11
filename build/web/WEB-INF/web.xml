@@ -68,8 +68,12 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>ReporteExpedientes</servlet-name>
-        <servlet-class>cr.ac.una.reg.info.Reportes.ReporteExpedientes</servlet-class>
+        <servlet-name>ReporteRemision</servlet-name>
+        <servlet-class>cr.ac.una.reg.info.Reportes.ReporteRemision</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportExpediente</servlet-name>
+        <servlet-class>cr.ac.una.reg.info.Reportes.ReportExpediente</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Persistent Faces Servlet</servlet-name>
@@ -97,8 +101,12 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>ReporteExpedientes</servlet-name>
-        <url-pattern>/ReporteExpedientes</url-pattern>
+        <servlet-name>ReporteRemision</servlet-name>
+        <url-pattern>/ReporteRemision</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportExpediente</servlet-name>
+        <url-pattern>/ReportExpediente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

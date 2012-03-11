@@ -45,7 +45,7 @@ public class ParametroBean {
         }
         catch(Exception e)
         {
-            this.setMsg("El ID del Parámetro debe ser un valor numérico.");
+            this.msg = "El ID del Parámetro debe ser un valor numérico.";
         }
     }
 
@@ -53,16 +53,7 @@ public class ParametroBean {
     public void setNombre(String nombre) { this.nombre = nombre; }
 
     public int getValor() { return valor; }
-    public void setValor(int valor) {
-
-        try{
-            this.valor = valor; 
-        }
-        catch(Exception e)
-        {
-            this.setMsg("El valor del Parámetro debe ser un valor numérico.");
-        }
-    }
+    public void setValor(int valor) { this.valor = valor; }
 
     public String getMsg() { return msg; }
     public void setMsg(String msg) { this.msg = msg; }
@@ -88,7 +79,7 @@ public class ParametroBean {
                  //this.list_ins_ParametroBean = (ArrayList)this.getList_ins_ParametroBean();
         }
         catch (Exception ex) {
-            this.setMsg("Error al tratar de listar los parámetros.. "+ex.getMessage());
+            this.setMsg("Error al tratar de listar los parametros.. "+ex.getMessage());
         }
         return vst_mensaje;
     }
@@ -120,7 +111,7 @@ public class ParametroBean {
 
         if(!list_st_comentarios.isEmpty())
         {
-            vst_mensaje = "Para actualizar el parámetro debe ingresar "+ vst_mensaje + " del PARAMETRO.";
+             vst_mensaje = "Para actualizar el parámetro debe ingresar "+ vst_mensaje + " del PARAMETRO.";
             this.setMsg(vst_mensaje);
             return "faltandatos";
         }
@@ -129,22 +120,15 @@ public class ParametroBean {
             try{
                 if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdParametro())))
                 {
-                    if(new ToolBean().ValidarEsNumero(Integer.toString(this.getValor())))
-                    {
-                        Servicio.parametroModificar(this);
-                        Servicio.parametroListarTodos(this);
+                    Servicio.parametroModificar(this);
+                    Servicio.parametroListarTodos(this);
 
-                        if(this.getIdParametro() == 0)
-                            return "noexiste";
-                        else
-                        {
-                            return "actualizado";
-                        }
-                    }
+                    if(this.getIdParametro() == 0)
+                        return "noexiste";
                     else
                     {
-                        this.setMsg("El Valor del Parámetro debe ser un valor numérico.");
-                        return "";
+                        return "actualizado";
+
                     }
                 }
                 else

@@ -25,7 +25,7 @@ public class SerieDocumentalBean {
     {
         this.idSerieDocumental = 0;
         this.tipoDocumental = "";
-        this.msg = "-";
+        this.msg = "LISTA DE SERIES DOCUMENTALES";
         this.checked = false;
         this.Inicializar_list_ins_SerieDocBean();
     }
@@ -39,7 +39,14 @@ public class SerieDocumentalBean {
 
     /* PROPIEDADES */
     public int getIdSerieDocumental() { return idSerieDocumental; }
-    public void setIdSerieDocumental(int idSerieDocumental) { this.idSerieDocumental = idSerieDocumental; }
+    public void setIdSerieDocumental(int idSerieDocumental) { 
+        try{
+            this.idSerieDocumental = idSerieDocumental;
+        }
+        catch(Exception e){
+            this.msg = "El ID debe de ser un valor numérico.";
+        }
+    }
 
     public String getMsg() { return msg; }
     public void setMsg(String msg) { this.msg = msg; }
@@ -207,7 +214,7 @@ public class SerieDocumentalBean {
         }
         if(this.getIdSerieDocumental() == 0)
             list_st_comentarios.add("El identificador de la serie documental debe ser mayor que cero.");
-        if(this.getTipoDocumental().equals(""))list_st_comentarios.add(" el tipo documental");
+        if(this.getTipoDocumental().equals(""))list_st_comentarios.add(" Debe ingresar el tipo documental.");
 
         if(!list_st_comentarios.isEmpty())
         {
@@ -235,9 +242,25 @@ public class SerieDocumentalBean {
         {
             if(!this.verificarSerieDoc())
             {
-                Servicio.seriedocumentalAgregar(this);
-                Servicio.serieDocumentalListarTodas(this);
-                //this.list_ins_SerieDocBeanAdd(this);// <== para el PROTOTIPO
+                if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdSerieDocumental())))
+                {
+                    if(!new ToolBean().ValidarEsPalabra(this.getTipoDocumental()))
+                    {
+                        this.setMsg("El nombre de la serie documental debe contener únicamente letras.");
+                        return "";
+                    }
+                    else
+                    {
+                        Servicio.seriedocumentalAgregar(this);
+                        Servicio.serieDocumentalListarTodas(this);
+                        //this.list_ins_SerieDocBeanAdd(this);// <== para el PROTOTIPO
+                    }
+                }
+                else
+                {
+                    this.setMsg("El ID de la serie diocumental debe ser un valor numérico.");
+                    return "";
+                }
             }
             else
             {
@@ -291,9 +314,25 @@ public class SerieDocumentalBean {
         {
             if(this.verificarSerieDoc())
             {
-                Servicio.seriedocumentalModificar(this);
-                Servicio.serieDocumentalListarTodas(this);
-                // this.list_ins_RolBeanUpdate(this);// <== para el PROTOTIPO
+                if(new ToolBean().ValidarEsNumero(Integer.toString(this.getIdSerieDocumental())))
+                {
+                    if(!new ToolBean().ValidarEsPalabra(this.getTipoDocumental()))
+                    {
+                        this.setMsg("El nombre de la serie documental debe contener únicamente letras.");
+                        return "";
+                    }
+                    else
+                    {
+                        Servicio.seriedocumentalModificar(this);
+                        Servicio.serieDocumentalListarTodas(this);
+                        // this.list_ins_RolBeanUpdate(this);// <== para el PROTOTIPO
+                    }
+                }
+                else
+                {
+                    this.setMsg("El ID de la serie diocumental debe ser un valor numérico.");
+                    return "";
+                }
             }
             else
             {
@@ -337,6 +376,7 @@ public class SerieDocumentalBean {
         else
         {
             try {
+
                 Servicio.seriedocumentalEliminar(this);
                 //this.list_ins_SerieDocBeanRemoveMulti(this);// <== para el PROTOTIPO
                 vst_msg_return = "Series documentales eliminadas exitósamente.";

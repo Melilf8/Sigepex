@@ -79,69 +79,39 @@
             <div id="container" class="centerDiv">
                 <h3>Reporte Lista Remisión</h3>
                 <div class="demo">
+
+                    <div id="container" >
+                        <h3>Buscar por Rango de Fechas</h3>
                     <label for="from">Fecha Inicio</label>
-                    <h:inputText styleClass="inputFrom"   id="from"  value="#{reporteRemision.fechaInicio}"/>
+                    <input type="text" class="inputFrom"  id="from"  value=""></input>
                     <label for="to">Fecha Final</label>
-                    <h:inputText styleClass="inputTo" id="to"  value="#{reporteRemision.fechaFinal}"/>
+                    <input type="text" class="inputTo"  id="to"  value=""></input>
+                    </div>
 
+                    <div id="container" >
+                        <h3>Buscar por Identificación de Estudiante - Nombre Funcionario -Nombre Dependecia</h3>
                     <label for="idest">Id Estudiante</label>
-                    <h:inputText id="idest" value="#{reporteRemision.idEstudiante}" />
-
-                   <ice:outputLabel value="Unidad Academica:" id="lbl_UndAc"/>
-                    <ice:selectOneMenu id="dp_dependencia" value="#{reporteRemision.dependencia}">
+                    <input type="text" class=""  id="txtIdEstudiante"  value=""></input>
+                  
+                 <ice:outputLabel value="Dependencia:" id="lbl_UndAc"/>
+                 <ice:selectOneMenu styleClass="inputCombo" id="dp_dependencia" value="#{reporte.dependencia}">
                         <f:selectItem itemLabel="" itemValue="" />
-                        <f:selectItem itemLabel="Atencion Estudiante" itemValue="Atencion" />
-                        <f:selectItem itemLabel="Soporte" itemValue="Soporte" />
-                        <f:selectItem itemLabel="Expedientes" itemValue="Expedientes" />
+                        <f:selectItem itemLabel="Atencion a Estudiantes" itemValue="Atencion" />
+                        <f:selectItem itemLabel="Administracion de Expedientes" itemValue="adm" />
+                        <f:selectItem itemLabel="Expedientes Estudiantilies" itemValue="Expedientes" />
+                        <f:selectItem itemLabel="Soporte Documental" itemValue="Soporte" />
                     </ice:selectOneMenu>
-
+                   
                     <label for="txtUsuario">Funcionario</label>
-                    <h:inputText  id="txtUsuario" value="#{reporteRemision.funcionario}"/>
+                    <input type="text" class=""  id="txtFuncionario"  value=""></input>
                     <br/>
-                    <p><h:commandButton value="Aceptar" styleClass="" onclick="" action="#{reporteRemision.Buscar}"/></p>
+                    </div>
+                    <p>
+                        <input type="button" value="Crear Reporte" onclick="CrearReporteRemision()"></input>
+                    </p>
 
                     </div><!-- End demo -->
-                    <h:dataTable id="dt1" styleClass="tablesorter" value="#{reporteRemision.tabledata}" var="item" >
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Orden Id" />
-                            </f:facet>
-                            <h:outputText value="#{item.ordenId}"></h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Folios" />
-                            </f:facet>
-                            <h:outputText value="#{item.folios}"></h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Funcionario" />
-                            </f:facet>
-                            <h:outputText value="#{item.funcionario}"></h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Dependencia" />
-                            </f:facet>
-                            <h:outputText value="#{item.dependencia}"></h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nombre" />
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"></h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Id Estudiante" />
-                            </f:facet>
-                            <h:outputText value="#{item.idEstudiante}"></h:outputText>
-                        </h:column>
-                        <f:facet name="footer">
-                            <h:outputText value="" />
-                        </f:facet>
-                    </h:dataTable>
+                   
                 </div>
             </ice:form>
         </body>

@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                      <td align="left" style="font-size:10px;">
-                         <ice:inputText id="txt_in_idRol"  styleClass="textBoxPeq" value="#{rolBean.idRol}" maxlength="10" tabindex="1"/>
+                         <ice:inputText id="txt_in_idRol"  styleClass="textBoxPeq" value="#{rolBean.idRol}" maxlength="2" tabindex="1"/>
                      </td>
                      <td>
                         <ice:inputText id="txt_in_nombre"  styleClass="textboxLargo" value="#{rolBean.nombreRol}" maxlength="45" tabindex="2"
